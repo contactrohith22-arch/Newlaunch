@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assetz Sanctum — Yelahanka New Town</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5A3;
+    --gold-dark: #9A7A45;
+    --charcoal: #1A1A1A;
+    --off-white: #F8F4EE;
+    --cream: #EDE8DF;
+    --warm-gray: #8A8278;
+    --text: #2C2C2C;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--charcoal);
+    color: var(--off-white);
+    overflow-x: hidden;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    padding: 22px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+  .nav-logo span { color: var(--off-white); font-style: italic; font-weight: 300; }
+  .nav-cta {
+    font-size: 0.7rem; letter-spacing: 0.18em; font-weight: 600; text-transform: uppercase;
+    color: var(--charcoal); background: var(--gold);
+    padding: 11px 28px; border: none; cursor: pointer;
+    transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+ 
+  /* ── HERO ── */
+  .hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.4) 60%, rgba(26,26,26,0.75) 100%),
+      radial-gradient(ellipse at 70% 40%, rgba(201,169,110,0.18) 0%, transparent 55%);
+    background-color: #2a2318;
+  }
+  /* Decorative architecture lines */
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(201,169,110,0.04) 0px, rgba(201,169,110,0.04) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(0deg, rgba(201,169,110,0.04) 0px, rgba(201,169,110,0.04) 1px, transparent 1px, transparent 80px);
+  }
+  .hero-illustration {
+    position: absolute; right: 0; bottom: 0; top: 0;
+    width: 55%; opacity: 0.22;
+    display: flex; align-items: flex-end; justify-content: flex-end;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 60px 80px;
+    max-width: 700px;
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 1.2s ease 0.3s forwards;
+  }
+  .hero-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 40px; height: 1px; background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--off-white);
+    margin-bottom: 10px;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 300; color: var(--warm-gray);
+    letter-spacing: 0.06em; margin-bottom: 36px;
+    font-style: italic;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 42px;
+  }
+  .badge {
+    border: 1px solid rgba(201,169,110,0.4);
+    padding: 8px 18px;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold-light); font-weight: 500;
+    background: rgba(201,169,110,0.06);
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--charcoal);
+    padding: 15px 36px; border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.18em; font-weight: 700; text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--off-white);
+    padding: 15px 36px; border: 1px solid rgba(248,244,238,0.35); cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.18em; font-weight: 500; text-transform: uppercase;
+    transition: border-color 0.3s, color 0.3s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+ 
+  /* ── URGENCY BANNER ── */
+  .urgency-bar {
+    background: var(--gold);
+    padding: 13px 60px;
+    display: flex; align-items: center; justify-content: center; gap: 30px;
+    flex-wrap: wrap;
+  }
+  .urgency-bar p {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--charcoal); font-weight: 700;
+  }
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--charcoal);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+ 
+  /* ── SECTION BASE ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before { content:''; width:30px; height:1px; background:var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300; line-height: 1.15;
+    color: var(--off-white); margin-bottom: 20px;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+ 
+  /* ── HIGHLIGHTS ── */
+  .highlights { background: var(--charcoal); }
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px; margin-top: 60px;
+  }
+  .highlight-card {
+    background: rgba(201,169,110,0.05);
+    border: 1px solid rgba(201,169,110,0.12);
+    padding: 40px 32px;
+    position: relative; overflow: hidden;
+    transition: background 0.4s, border-color 0.4s;
+    opacity: 0; transform: translateY(20px);
+  }
+  .highlight-card.visible { opacity:1; transform:translateY(0); transition: opacity 0.6s ease, transform 0.6s ease, background 0.4s, border-color 0.4s; }
+  .highlight-card:hover { background: rgba(201,169,110,0.1); border-color: rgba(201,169,110,0.35); }
+  .highlight-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .highlight-card:hover::after { transform: scaleX(1); }
+  .card-icon {
+    font-size: 1.8rem; margin-bottom: 20px;
+  }
+  .card-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .card-title {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--warm-gray); font-weight: 600; margin: 8px 0 12px;
+  }
+  .card-desc {
+    font-size: 0.85rem; color: rgba(248,244,238,0.65); line-height: 1.7;
+  }
+ 
+  /* ── PRICING ── */
+  .pricing { background: #141414; }
+  .pricing-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px;
+  }
+  .price-card {
+    background: rgba(201,169,110,0.04);
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 50px 40px;
+    position: relative;
+  }
+  .price-card.featured {
+    background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.04));
+    border-color: rgba(201,169,110,0.4);
+  }
+  .price-card.featured::before {
+    content: 'EOI SPECIAL';
+    position: absolute; top: 0; right: 30px;
+    background: var(--gold); color: var(--charcoal);
+    font-size: 0.6rem; letter-spacing: 0.2em; font-weight: 700;
+    padding: 6px 16px;
+  }
+  .price-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-gray); font-weight: 600; margin-bottom: 10px; }
+  .price-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .price-sub { font-size: 0.8rem; color: var(--warm-gray); margin: 10px 0 24px; }
+  .price-features { list-style: none; }
+  .price-features li {
+    font-size: 0.82rem; color: rgba(248,244,238,0.7);
+    padding: 10px 0; border-bottom: 1px solid rgba(201,169,110,0.08);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .price-features li::before { content:'✦'; color: var(--gold); font-size: 0.5rem; }
+ 
+  /* ── LOCATION ── */
+  .location { background: var(--charcoal); }
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;
+    margin-top: 60px; align-items: start;
+  }
+  .location-points { display: flex; flex-direction: column; gap: 0; }
+  .loc-item {
+    padding: 24px 0; border-bottom: 1px solid rgba(201,169,110,0.12);
+    display: flex; align-items: flex-start; gap: 20px;
+    opacity: 0; transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .loc-item.visible { opacity:1; transform:translateX(0); }
+  .loc-icon { font-size: 1.2rem; width: 36px; flex-shrink: 0; margin-top: 2px; }
+  .loc-title { font-size: 0.85rem; font-weight: 600; color: var(--gold-light); margin-bottom: 4px; letter-spacing: 0.05em; }
+  .loc-desc { font-size: 0.78rem; color: rgba(248,244,238,0.55); line-height: 1.6; }
+  .map-placeholder {
+    background: rgba(201,169,110,0.06);
+    border: 1px solid rgba(201,169,110,0.2);
+    aspect-ratio: 4/3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; padding: 40px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .map-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, rgba(201,169,110,0.03) 0px, rgba(201,169,110,0.03) 1px, transparent 1px, transparent 20px);
+  }
+  .map-pin { font-size: 2.5rem; position: relative; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .map-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300; color: var(--gold); position: relative;
+  }
+  .map-addr { font-size: 0.72rem; color: var(--warm-gray); letter-spacing: 0.1em; position: relative; }
+  .map-open-btn {
+    position: relative;
+    background: transparent; border: 1px solid rgba(201,169,110,0.4);
+    color: var(--gold); padding: 11px 24px;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600;
+    transition: background 0.3s;
+  }
+  .map-open-btn:hover { background: rgba(201,169,110,0.15); }
+ 
+  /* ── WHY ── */
+  .why { background: #141414; }
+  .why-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px;
+  }
+  .why-item {
+    padding: 36px 32px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201,169,110,0.08);
+    display: flex; gap: 20px;
+    transition: border-color 0.3s;
+  }
+  .why-item:hover { border-color: rgba(201,169,110,0.3); }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: rgba(201,169,110,0.2);
+    line-height: 1; flex-shrink: 0; width: 50px;
+  }
+  .why-text h4 { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; font-weight: 600; }
+  .why-text p { font-size: 0.82rem; color: rgba(248,244,238,0.55); line-height: 1.7; }
+ 
+  /* ── CONTACT ── */
+  .contact {
+    background: linear-gradient(135deg, #1A1510, #141414);
+    position: relative; overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .contact-inner {
+    position: relative; z-index: 2;
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  .contact-inner .section-label { justify-content: center; }
+  .contact-inner .section-label::before { display: none; }
+  .contact-inner .section-title { text-align: center; }
+  .contact-sub {
+    font-size: 0.85rem; color: var(--warm-gray); line-height: 1.8;
+    max-width: 500px; margin: 0 auto 50px; font-style: italic;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300;
+  }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 40px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-input {
+    background: rgba(201,169,110,0.05);
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 16px 20px;
+    color: var(--off-white); font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem; outline: none; width: 100%;
+    transition: border-color 0.3s;
+  }
+  .form-input::placeholder { color: var(--warm-gray); }
+  .form-input:focus { border-color: var(--gold); }
+  select.form-input { cursor: pointer; }
+  select.form-input option { background: #1a1a1a; }
+  .form-submit {
+    background: var(--gold); color: var(--charcoal);
+    padding: 18px 40px; border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s; width: 100%;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .contact-divider {
+    display: flex; align-items: center; gap: 20px;
+    font-size: 0.68rem; letter-spacing: 0.2em; color: var(--warm-gray); text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .contact-divider::before, .contact-divider::after { content:''; flex:1; height:1px; background:rgba(201,169,110,0.15); }
+  .contact-phone {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    text-decoration: none;
+  }
+  .phone-icon { font-size: 1.4rem; }
+  .phone-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem; font-weight: 300; color: var(--gold);
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .contact-phone:hover .phone-num { color: var(--gold-light); }
+  .phone-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--warm-gray); }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: #0D0D0D;
+    padding: 30px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(201,169,110,0.1);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--gold); font-weight: 400; letter-spacing: 0.08em;
+  }
+  .footer-note { font-size: 0.68rem; color: rgba(138,130,120,0.6); letter-spacing: 0.05em; }
+ 
+  /* ── TOAST ── */
+  #toast {
+    position: fixed; bottom: 30px; right: 30px; z-index: 999;
+    background: var(--gold); color: var(--charcoal);
+    padding: 16px 28px; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transform: translateY(80px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+ 
+  /* ── SCROLL INDICATOR ── */
+  .scroll-ind {
+    position: absolute; bottom: 36px; right: 60px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    z-index: 2;
+    opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  .scroll-text { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-gray); writing-mode: vertical-rl; }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+ 
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    section { padding: 70px 24px; }
+    .hero-content { padding: 0 24px 60px; }
+    .urgency-bar { padding: 13px 24px; }
+    footer { padding: 24px; }
+    .pricing-cols, .location-grid, .why-list { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .scroll-ind { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Assetz <span>Sanctum</span></div>
+  <button class="nav-cta" onclick="scrollToContact()">Register Interest</button>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Discover</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Pre-Launch Exclusive · North Bangalore</div>
+    <h1 class="hero-title">Assetz<br><em>Sanctum</em></h1>
+    <p class="hero-subtitle">Yelahanka New Town, Bangalore</p>
+    <div class="hero-badges">
+      <span class="badge">3 BHK Residences</span>
+      <span class="badge">1800 – 2100 sft</span>
+      <span class="badge">₹1.8 Cr – ₹2.5 Cr</span>
+      <span class="badge">EOI Open</span>
+    </div>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scrollToContact()">Express Your Interest</button>
+      <a href="tel:9901511104" class="btn-secondary">📞 Call Now</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  <div class="pulse-dot"></div>
+  <p>⚡ EOI Window Closing Soon — Earliest Expressions Get Best Floors & Best Pricing</p>
+  <div class="pulse-dot"></div>
+</div>
+ 
+<!-- HIGHLIGHTS -->
+<section class="highlights">
+  <div class="section-label">The Offering</div>
+  <h2 class="section-title">Rare Scale.<br><em>Unmatched Value.</em></h2>
+  <div class="highlights-grid">
+    <div class="highlight-card">
+      <div class="card-icon">🏡</div>
+      <div class="card-number">3 BHK</div>
+      <div class="card-title">Spacious Residences</div>
+      <p class="card-desc">Generously proportioned homes ranging 1800–2100 sqft — a rare find at this price in Bangalore.</p>
+    </div>
+    <div class="highlight-card">
+      <div class="card-icon">📐</div>
+      <div class="card-number">1800<span style="font-size:1.4rem">+</span></div>
+      <div class="card-title">Sq.ft Starting Area</div>
+      <p class="card-desc">Up to 2100 sft of thoughtfully designed living space with superior layouts and natural light.</p>
+    </div>
+    <div class="highlight-card">
+      <div class="card-icon">🏆</div>
+      <div class="card-number">Assetz</div>
+      <div class="card-title">Proven Brand</div>
+      <p class="card-desc">Decades of delivery excellence. Zero compromise on construction quality or timelines.</p>
+    </div>
+    <div class="highlight-card">
+      <div class="card-icon">📈</div>
+      <div class="card-number">EOI</div>
+      <div class="card-title">Lowest Price Point</div>
+      <p class="card-desc">EOI stage is the only opportunity to lock in entry-level pricing before public launch.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- PRICING -->
+<section class="pricing">
+  <div class="section-label">Investment</div>
+  <h2 class="section-title">Transparent<br><em>Pricing</em></h2>
+  <div class="pricing-cols">
+    <div class="price-card">
+      <div class="price-label">Starting From</div>
+      <div class="price-value">₹1.8 Cr</div>
+      <div class="price-sub">For 1800 sft · 3 BHK</div>
+      <ul class="price-features">
+        <li>Spacious 3-bedroom layout</li>
+        <li>Premium North Bangalore location</li>
+        <li>Assetz construction quality</li>
+        <li>Ideal for end use</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-label">Going Up To</div>
+      <div class="price-value">₹2.5 Cr</div>
+      <div class="price-sub">For 2100 sft · 3 BHK Premium</div>
+      <ul class="price-features">
+        <li>Larger floor plan — 2100 sft</li>
+        <li>Higher floors with better views</li>
+        <li>Strong investment upside</li>
+        <li>Metro & IT belt proximity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+ 
+<!-- LOCATION -->
+<section class="location">
+  <div class="section-label">Location</div>
+  <h2 class="section-title">Yelahanka New Town —<br><em>Where Bangalore is Headed</em></h2>
+  <div class="location-grid">
+    <div class="location-points">
+      <div class="loc-item">
+        <div class="loc-icon">🚇</div>
+        <div>
+          <div class="loc-title">Metro Influence</div>
+          <p class="loc-desc">Namma Metro expansion bringing unmatched connectivity to North Bangalore.</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">💻</div>
+        <div>
+          <div class="loc-title">IT Expansion</div>
+          <p class="loc-desc">Major tech parks and IT corridors growing rapidly in North Bangalore's belt.</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">🛣️</div>
+        <div>
+          <div class="loc-title">Infrastructure Boom</div>
+          <p class="loc-desc">Widened roads, flyovers, and ring road access making connectivity seamless.</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">✈️</div>
+        <div>
+          <div class="loc-title">Airport Proximity</div>
+          <p class="loc-desc">Close to Kempegowda International Airport — a premium lifestyle advantage.</p>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">🏫</div>
+        <div>
+          <div class="loc-title">Social Infrastructure</div>
+          <p class="loc-desc">Top schools, hospitals, malls and entertainment hubs within easy reach.</p>
+        </div>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <div class="map-pin">📍</div>
+      <div class="map-label">Yelahanka New Town</div>
+      <div class="map-addr">North Bangalore, Karnataka</div>
+      <button class="map-open-btn" onclick="window.open('https://maps.google.com/?q=Yelahanka+New+Town+Bangalore','_blank')">
+        View on Google Maps →
+      </button>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHY NOW -->
+<section class="why">
+  <div class="section-label">Why Act Now</div>
+  <h2 class="section-title">The EOI Advantage —<br><em>Act Before the Public</em></h2>
+  <div class="why-list">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <div class="why-text">
+        <h4>Best Price Guaranteed</h4>
+        <p>EOI pricing is the lowest you'll ever see for this project. Prices only go up post launch.</p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <div class="why-text">
+        <h4>Floor Selection Priority</h4>
+        <p>First expressions get first pick of floors, orientation, and facing — the best units always go first.</p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <div class="why-text">
+        <h4>Maximum Return Potential</h4>
+        <p>History shows buyers at EOI stage consistently achieve the highest appreciation returns.</p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <div class="why-text">
+        <h4>Assetz Track Record</h4>
+        <p>Proven delivery, zero compromise. Investing with Assetz means investing with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Reserve Your<br><em>Expression of Interest</em></h2>
+    <p class="contact-sub">Share your details and we'll get back to you personally with complete project information, floor plans, and pricing.</p>
+ 
+    <div class="contact-form">
+      <div class="form-row">
+        <input type="text" class="form-input" id="fname" placeholder="Full Name *" required>
+        <input type="tel" class="form-input" id="fphone" placeholder="Phone Number *" required>
+      </div>
+      <input type="email" class="form-input" id="femail" placeholder="Email Address">
+      <select class="form-input" id="fbudget">
+        <option value="" disabled selected>Budget Range</option>
+        <option>₹1.8 Cr – ₹2.0 Cr</option>
+        <option>₹2.0 Cr – ₹2.3 Cr</option>
+        <option>₹2.3 Cr – ₹2.5 Cr</option>
+        <option>Open to discussion</option>
+      </select>
+      <select class="form-input" id="fpurpose">
+        <option value="" disabled selected>Purpose of Purchase</option>
+        <option>End Use (Self Residence)</option>
+        <option>Investment</option>
+        <option>Both</option>
+      </select>
+      <button class="form-submit" onclick="handleSubmit()">Submit — Register My Interest</button>
+    </div>
+ 
+    <div class="contact-divider">Or Call Directly</div>
+ 
+    <a href="tel:9901511104" class="contact-phone">
+      <div class="phone-icon">📞</div>
+      <div>
+        <div class="phone-num">+91 99015 11104</div>
+        <div class="phone-label">Available Mon – Sat · 9 AM – 7 PM</div>
+      </div>
+    </a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Assetz Sanctum · Yelahanka New Town</div>
+  <div class="footer-note">This is a pre-launch communication shared with a select network. All details subject to change. RERA registration in process.</div>
+</footer>
+ 
+<!-- TOAST -->
+<div id="toast">✦ Thank you! We'll contact you shortly.</div>
+ 
+<script>
+  // Scroll to contact
+  function scrollToContact() {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+ 
+  // Form submission
+  function handleSubmit() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    if (!name || !phone) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+    showToast();
+    document.getElementById('fname').value = '';
+    document.getElementById('fphone').value = '';
+    document.getElementById('femail').value = '';
+    document.getElementById('fbudget').selectedIndex = 0;
+    document.getElementById('fpurpose').selectedIndex = 0;
+  }
+ 
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+ 
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+ 
+  document.querySelectorAll('.highlight-card').forEach((el, i) => {
+    el.dataset.delay = i * 100;
+    observer.observe(el);
+  });
+ 
+  document.querySelectorAll('.loc-item').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
