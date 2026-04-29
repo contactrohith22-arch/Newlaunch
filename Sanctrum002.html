@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assetz Sanctum — Yelahanka New Town | Pre-Launch EOI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0905;--ivory:#F5F0E8;
+  --gold:#B8975A;--gold2:#D4B07A;--gold3:#8A6D3A;
+  --warm:#7A6A55;--muted:#A09070;--white:#FDFBF7;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--ivory);overflow-x:hidden;cursor:none}
+ 
+/* ── CURSOR ── */
+.cursor{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(184,151,90,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease}
+ 
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:28px 64px;display:flex;justify-content:space-between;align-items:center;transition:background .5s,padding .4s}
+nav.scrolled{background:rgba(10,9,5,0.95);backdrop-filter:blur(20px);padding:18px 64px;border-bottom:1px solid rgba(184,151,90,0.14)}
+.nav-logo-top{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;letter-spacing:0.1em;color:var(--white)}
+.nav-logo-sub{font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-top:2px}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(253,251,247,0.5);text-decoration:none;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
+.nav-eoi{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:11px 28px;font-family:'Jost',sans-serif;font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .35s}
+.nav-eoi:hover{background:var(--gold);color:var(--ink)}
+ 
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:720px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-canvas{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(184,151,90,0.12) 0%,transparent 65%),radial-gradient(ellipse 50% 80% at 20% 80%,rgba(184,151,90,0.06) 0%,transparent 55%);background-color:var(--ink)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,151,90,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,151,90,0.04) 1px,transparent 1px);background-size:100px 100px;animation:gridDrift 30s linear infinite}
+@keyframes gridDrift{0%{background-position:0 0}100%{background-position:100px 100px}}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;animation:orbFloat 14s ease-in-out infinite}
+.orb1{width:520px;height:520px;right:-120px;top:-60px;background:radial-gradient(circle,rgba(184,151,90,0.09),transparent 70%)}
+.orb2{width:360px;height:360px;left:-90px;bottom:100px;background:radial-gradient(circle,rgba(184,151,90,0.06),transparent 70%);animation-delay:-7s;animation-duration:19s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-30px) scale(1.05)}66%{transform:translate(-15px,20px) scale(0.97)}}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:1000px;padding:0 40px}
+.hero-tag{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(184,151,90,0.35);padding:8px 22px;margin-bottom:40px;font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);font-weight:500;opacity:0;animation:fadeUp .8s ease .4s forwards}
+.hero-tag::before,.hero-tag::after{content:'';width:16px;height:1px;background:var(--gold);opacity:.6}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,8rem);font-weight:300;line-height:.92;color:var(--white);margin-bottom:16px;opacity:0;animation:fadeUp 1s ease .6s forwards}
+.hero-headline em{font-style:italic;color:var(--gold);font-weight:300}
+.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2.2vw,1.55rem);font-weight:300;color:var(--muted);letter-spacing:.04em;margin-bottom:48px;opacity:0;animation:fadeUp .9s ease .85s forwards}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:52px;opacity:0;animation:fadeUp .9s ease 1s forwards}
+.pill{border:1px solid rgba(184,151,90,0.25);background:rgba(184,151,90,0.06);padding:10px 20px;font-size:0.67rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.75);transition:all .3s}
+.pill:hover{border-color:var(--gold);background:rgba(184,151,90,.12);color:var(--gold)}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease 1.2s forwards}
+.btn-g{background:var(--gold);color:var(--ink);padding:16px 42px;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.71rem;letter-spacing:.22em;font-weight:600;text-transform:uppercase;position:relative;overflow:hidden;transition:transform .25s}
+.btn-g::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-110%) skewX(-15deg);transition:transform .4s ease}
+.btn-g:hover::after{transform:translateX(110%) skewX(-15deg)}.btn-g:hover{transform:translateY(-2px)}
+.btn-o{background:transparent;color:var(--ivory);padding:16px 42px;border:1px solid rgba(245,240,232,.3);cursor:pointer;font-family:'Jost',sans-serif;font-size:0.71rem;letter-spacing:.22em;font-weight:400;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .35s}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeUp .8s ease 1.8s forwards}
+.scroll-mouse{width:24px;height:38px;border:1.5px solid rgba(184,151,90,.45);border-radius:12px;display:flex;justify-content:center;padding-top:7px}
+.scroll-wheel{width:3px;height:7px;background:var(--gold);border-radius:2px;animation:wheelScroll 2s ease infinite}
+@keyframes wheelScroll{0%{transform:translateY(0);opacity:1}80%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:0}}
+.scroll-text{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--warm)}
+ 
+/* ── TICKER ── */
+.ticker{background:var(--gold);overflow:hidden;height:44px;display:flex;align-items:center}
+.ticker-track{display:flex;white-space:nowrap;animation:tickerRun 32s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.tick-item{display:inline-flex;align-items:center;gap:8px;padding:0 30px;height:44px;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);border-right:1px solid rgba(10,9,5,.12)}
+.tick-dot{width:4px;height:4px;background:var(--ink);border-radius:50%;opacity:.35}
+@keyframes tickerRun{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+ 
+/* ── SECTION BASE ── */
+section{padding:110px 64px}
+.label{font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);font-weight:500;display:inline-flex;align-items:center;gap:14px;margin-bottom:20px}
+.label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.display{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;line-height:1.1;color:var(--white)}
+.display em{font-style:italic;color:var(--gold)}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .75s ease,transform .75s ease}
+.reveal-left.in{opacity:1;transform:none}
+ 
+/* ── STORY ── */
+.story{background:var(--ink);display:grid;grid-template-columns:1fr 1fr;padding:0}
+.story-img{position:relative;overflow:hidden;min-height:600px;background:linear-gradient(135deg,#1a1505,#2a2010);display:flex;align-items:center;justify-content:center}
+.bldg-svg{width:75%;opacity:.5;animation:bldgPulse 8s ease-in-out infinite}
+@keyframes bldgPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.65;transform:scale(1.01)}}
+.story-text{padding:100px 72px;display:flex;flex-direction:column;justify-content:center;background:#0D0B07}
+.story-quote{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.4;color:var(--ivory);border-left:2px solid var(--gold);padding-left:28px;margin:28px 0 36px}
+.story-body{font-size:.86rem;color:var(--muted);line-height:1.95;font-weight:300;max-width:460px}
+.story-cta{margin-top:36px}
+ 
+/* ── NUMBERS ── */
+.numbers{background:#0D0B07;text-align:center}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:72px;background:rgba(184,151,90,0.07)}
+.num-block{background:#0D0B07;padding:52px 24px;position:relative;overflow:hidden;transition:background .4s}
+.num-block:hover{background:rgba(184,151,90,.03)}
+.num-block::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.num-block:hover::after{transform:scaleX(1)}
+.num-val{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:300;color:var(--gold);line-height:1}
+.num-unit{font-size:1.1rem;vertical-align:super}
+.num-lbl{font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:var(--warm);margin-top:12px;font-weight:400}
+.num-desc{font-size:.76rem;color:rgba(161,144,112,.5);margin-top:6px;font-weight:300}
+ 
+/* ── HIGHLIGHTS ── */
+.highlights{background:var(--ink)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:72px;background:rgba(184,151,90,.06)}
+.hl-card{background:var(--ink);padding:50px 38px;position:relative;overflow:hidden;cursor:default;transition:background .4s}
+.hl-card:hover{background:#0D0B07}
+.hl-num{font-family:'Playfair Display',serif;font-size:5rem;font-weight:300;color:rgba(184,151,90,.07);line-height:1;position:absolute;right:22px;top:18px;transition:color .5s}
+.hl-card:hover .hl-num{color:rgba(184,151,90,.16)}
+.hl-icon{font-size:1.9rem;margin-bottom:22px;display:block}
+.hl-title{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;color:var(--ivory);margin-bottom:14px;line-height:1.2}
+.hl-body{font-size:.81rem;color:var(--muted);line-height:1.9;font-weight:300}
+.hl-line{width:0;height:1px;background:var(--gold);margin-top:26px;transition:width .5s ease}
+.hl-card:hover .hl-line{width:48px}
+ 
+/* ── PRICING ── */
+.pricing{background:#080704}
+.price-wrap{display:grid;grid-template-columns:1.15fr 0.85fr;gap:44px;margin-top:72px;align-items:start}
+.price-hero-card{background:linear-gradient(145deg,#141008,#0f0c06);border:1px solid rgba(184,151,90,.2);padding:58px 50px;position:relative;overflow:hidden}
+.price-hero-card::before{content:'';position:absolute;top:0;right:0;width:220px;height:220px;background:radial-gradient(circle,rgba(184,151,90,.09),transparent 70%)}
+.price-eoi-tag{display:inline-block;background:var(--gold);color:var(--ink);font-size:.58rem;letter-spacing:.25em;font-weight:700;text-transform:uppercase;padding:6px 16px;margin-bottom:30px}
+.price-from{font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:var(--warm);margin-bottom:8px;font-weight:400}
+.price-big{font-family:'Playfair Display',serif;font-size:4.4rem;font-weight:300;color:var(--gold);line-height:1}
+.price-to{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300;color:var(--muted);margin:10px 0 30px}
+.price-feats{list-style:none}
+.price-feats li{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(184,151,90,.08);font-size:.81rem;color:rgba(245,240,232,.65);font-weight:300}
+.price-feats li::before{content:'◆';font-size:.38rem;color:var(--gold);flex-shrink:0}
+.price-cards{display:flex;flex-direction:column;gap:14px}
+.p-card{background:#0D0B07;border:1px solid rgba(184,151,90,.1);padding:26px 30px;display:flex;justify-content:space-between;align-items:center;transition:border-color .3s,background .3s;cursor:default}
+.p-card:hover{border-color:rgba(184,151,90,.35);background:rgba(184,151,90,.04)}
+.p-card-lbl{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--warm);font-weight:400;margin-bottom:5px}
+.p-card-val{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:300;color:var(--ivory)}
+.p-card-arrow{font-size:1.1rem;color:var(--gold);opacity:0;transition:opacity .3s,transform .3s;transform:translateX(-6px)}
+.p-card:hover .p-card-arrow{opacity:1;transform:translateX(0)}
+.price-note{margin-top:16px;font-size:.71rem;color:var(--warm);font-style:italic;font-weight:300;border-left:2px solid rgba(184,151,90,.2);padding-left:14px}
+ 
+/* ── LOCATION SECTION 1: MAP + POINTS ── */
+.location{background:var(--ink)}
+.loc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:72px;align-items:start}
+.loc-map-box{position:relative;overflow:hidden;border:1px solid rgba(184,151,90,.2);transition:border-color .4s}
+.loc-map-box:hover{border-color:rgba(184,151,90,.45)}
+.loc-map-box iframe{width:100%;height:420px;display:block;filter:grayscale(40%) sepia(20%);transition:filter .4s}
+.loc-map-box:hover iframe{filter:grayscale(20%) sepia(10%)}
+.map-label-bar{background:#0D0B07;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(184,151,90,.12)}
+.map-label-bar-left{font-family:'Playfair Display',serif;font-size:1rem;font-weight:300;color:var(--ivory)}
+.map-label-bar-left span{display:block;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-top:2px}
+.map-open-link{background:var(--gold);color:var(--ink);text-decoration:none;padding:10px 20px;font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.18em;font-weight:700;text-transform:uppercase;white-space:nowrap;transition:background .3s;flex-shrink:0}
+.map-open-link:hover{background:var(--gold2)}
+.loc-points{display:flex;flex-direction:column}
+.lp{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-bottom:1px solid rgba(184,151,90,.08);transition:padding-left .3s}
+.lp:hover{padding-left:8px}
+.lp-ico{width:44px;height:44px;border:1px solid rgba(184,151,90,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:background .3s,border-color .3s}
+.lp:hover .lp-ico{background:rgba(184,151,90,.1);border-color:var(--gold)}
+.lp-title{font-size:.73rem;font-weight:600;color:var(--ivory);letter-spacing:.08em;margin-bottom:4px;text-transform:uppercase}
+.lp-desc{font-size:.79rem;color:var(--muted);line-height:1.75;font-weight:300}
+ 
+/* ── LOCATION SECTION 2: NEIGHBOURHOOD ── */
+.neighbourhood{background:#080704}
+.nb-intro{font-size:.9rem;color:var(--muted);line-height:1.95;font-weight:300;max-width:660px;margin:20px 0 72px;font-family:'Playfair Display',serif;font-style:italic}
+.nb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,151,90,.07);margin-bottom:60px}
+.nb-card{background:#080704;padding:40px 32px;position:relative;overflow:hidden;transition:background .4s;cursor:default}
+.nb-card:hover{background:rgba(184,151,90,.04)}
+.nb-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .4s ease}
+.nb-card:hover::before{height:100%}
+.nb-ico{font-size:2rem;margin-bottom:20px}
+.nb-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400;color:var(--ivory);margin-bottom:12px}
+.nb-desc{font-size:.79rem;color:var(--muted);line-height:1.85;font-weight:300}
+.nb-tag{display:inline-block;margin-top:14px;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,151,90,.25);padding:4px 12px;font-weight:500}
+ 
+/* Distance table */
+.nb-distances{background:rgba(184,151,90,.04);border:1px solid rgba(184,151,90,.12);padding:40px 48px}
+.nb-dist-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300;color:var(--ivory);margin-bottom:32px}
+.nb-dist-title em{color:var(--gold);font-style:italic}
+.dist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,151,90,.08)}
+.dist-item{background:#080704;padding:22px 24px;display:flex;align-items:center;gap:16px;transition:background .3s}
+.dist-item:hover{background:rgba(184,151,90,.04)}
+.dist-ico{font-size:1.1rem;flex-shrink:0;width:36px;text-align:center}
+.dist-name{font-size:.78rem;color:var(--ivory);font-weight:400;margin-bottom:3px}
+.dist-km{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:300;color:var(--gold)}
+.dist-time{font-size:.65rem;color:var(--muted);letter-spacing:.08em}
+ 
+/* ── AMENITIES ── */
+.amenities{background:var(--ink);text-align:center}
+.am-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;margin-top:70px;background:rgba(184,151,90,.06)}
+.am-item{background:var(--ink);padding:36px 18px;display:flex;flex-direction:column;align-items:center;gap:11px;transition:background .35s;cursor:default}
+.am-item:hover{background:rgba(184,151,90,.05)}
+.am-ico{font-size:1.55rem;transition:transform .3s}
+.am-item:hover .am-ico{transform:scale(1.2)}
+.am-lbl{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);font-weight:400;text-align:center;line-height:1.45}
+ 
+/* ── WHY ── */
+.why{background:#080704}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:72px;background:rgba(184,151,90,.06)}
+.why-card{background:#080704;padding:46px 42px;display:flex;gap:22px;transition:background .4s}
+.why-card:hover{background:#0D0B07}
+.why-n{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:300;color:rgba(184,151,90,.1);line-height:1;flex-shrink:0;transition:color .4s}
+.why-card:hover .why-n{color:rgba(184,151,90,.22)}
+.why-h{font-size:.77rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ivory);font-weight:500;margin-bottom:11px}
+.why-p{font-size:.81rem;color:var(--muted);line-height:1.9;font-weight:300}
+ 
+/* ── AWARDS ── */
+.awards{background:var(--ink);overflow:hidden}
+.awards-scroll{display:flex;gap:28px;margin-top:52px;animation:scrollLeft 36s linear infinite}
+.awards-scroll:hover{animation-play-state:paused}
+.award-chip{flex-shrink:0;border:1px solid rgba(184,151,90,.16);padding:22px 30px;min-width:220px;background:rgba(184,151,90,.025)}
+.aw-year{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-weight:500}
+.aw-body{font-size:.76rem;color:var(--muted);line-height:1.65;font-weight:300}
+.aw-body strong{color:var(--ivory);font-weight:400}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+ 
+/* ── CONTACT — WHATSAPP ONLY ── */
+.contact{background:linear-gradient(160deg,#0F0C06,#0A0905);position:relative;overflow:hidden;padding:110px 64px}
+.contact::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,151,90,.07),transparent 70%);pointer-events:none}
+.contact-wa-wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:start}
+.contact-intro{font-size:.88rem;color:var(--muted);line-height:1.9;font-weight:300;font-family:'Playfair Display',serif;font-style:italic;margin-bottom:32px}
+.direct-call{display:flex;align-items:center;gap:18px;padding:24px;background:rgba(184,151,90,.06);border:1px solid rgba(184,151,90,.15);text-decoration:none;transition:border-color .3s,background .3s;margin-bottom:28px}
+.direct-call:hover{border-color:rgba(184,151,90,.4);background:rgba(184,151,90,.09)}
+.call-icon{width:48px;height:48px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.call-num{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:300;color:var(--ivory)}
+.call-sub{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);margin-top:2px}
+ 
+/* trust badges */
+.wa-trust-row{display:flex;gap:16px;flex-wrap:wrap}
+.wa-trust-item{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--muted);padding:8px 14px;border:1px solid rgba(184,151,90,.12);background:rgba(184,151,90,.04)}
+.wa-trust-item span{letter-spacing:.06em}
+ 
+/* WhatsApp EOI card */
+.wa-eoi-card{background:#0D0B07;border:1px solid rgba(37,211,102,.18);padding:44px}
+.wa-eoi-head{display:flex;align-items:center;gap:18px;margin-bottom:34px;padding-bottom:24px;border-bottom:1px solid rgba(37,211,102,.1)}
+.wa-eoi-icon{width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-eoi-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300;color:var(--ivory);margin-bottom:4px}
+.wa-eoi-sub{font-size:.7rem;color:var(--muted);letter-spacing:.08em}
+.wa-eoi-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:26px}
+.wa-field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.wa-field-wrap{display:flex;flex-direction:column;gap:6px}
+.wa-field-lbl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);font-weight:500}
+.wa-field{background:rgba(245,240,232,.03);border:1px solid rgba(184,151,90,.15);padding:14px 16px;color:var(--ivory);font-family:'Jost',sans-serif;font-size:.82rem;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none;width:100%}
+.wa-field::placeholder{color:rgba(161,144,112,.4)}
+.wa-field:focus{border-color:#25D366;background:rgba(37,211,102,.04)}
+select.wa-field option{background:#0D0B07}
+.wa-eoi-btn{width:100%;background:#25D366;color:#fff;border:none;cursor:pointer;padding:18px;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.2em;font-weight:700;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;transition:background .3s,transform .2s}
+.wa-eoi-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);transform:translateX(-110%) skewX(-15deg);transition:transform .4s ease}
+.wa-eoi-btn:hover::after{transform:translateX(110%) skewX(-15deg)}
+.wa-eoi-btn:hover{background:#1ebe5d;transform:translateY(-2px)}
+.wa-eoi-note{font-size:.67rem;color:rgba(160,144,112,.5);margin-top:12px;text-align:center;letter-spacing:.06em}
+.btn-wa-hero{background:#25D366;display:inline-flex;align-items:center;gap:10px}
+.btn-wa-hero:hover{background:#1ebe5d}
+ 
+/* ── FOOTER ── */
+footer{background:#050402;padding:26px 64px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(184,151,90,.1);flex-wrap:wrap;gap:12px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);letter-spacing:.12em}
+.footer-note{font-size:.6rem;color:rgba(122,106,85,.5);max-width:560px;line-height:1.65;text-align:right}
+ 
+/* ── TOAST ── */
+#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--gold);color:var(--ink);padding:15px 34px;font-size:.7rem;letter-spacing:.18em;font-weight:700;text-transform:uppercase;z-index:9990;opacity:0;transition:all .5s cubic-bezier(.22,1,.36,1);pointer-events:none;white-space:nowrap;box-shadow:0 8px 40px rgba(184,151,90,.3)}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+ 
+/* ── PROXIMITY TABS ── */
+.prox-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.prox-tab{background:transparent;border:1px solid rgba(184,151,90,.2);color:var(--muted);padding:11px 22px;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s}
+.prox-tab:hover{border-color:rgba(184,151,90,.5);color:var(--gold)}
+.prox-tab.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.prox-panel{display:none}
+.prox-panel.active{display:block;animation:fadeUp .4s ease}
+.prox-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,151,90,.07)}
+.prox-item{background:#080704;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;transition:background .3s}
+.prox-item:hover{background:rgba(184,151,90,.06)}
+.prox-name{font-size:.82rem;color:var(--ivory);font-weight:400}
+.prox-time{font-family:'Playfair Display',serif;font-size:1rem;font-weight:300;color:var(--gold);white-space:nowrap;margin-left:12px;flex-shrink:0}
+ 
+/* ── WHATSAPP ── */
+.wa-section{margin:24px 0}
+.wa-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);margin-bottom:12px;font-weight:500}
+.wa-btn{width:100%;background:#25D366;color:#fff;border:none;cursor:pointer;padding:16px 28px;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;font-weight:700;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .3s,transform .2s;position:relative;overflow:hidden}
+.wa-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);transform:translateX(-110%) skewX(-15deg);transition:transform .4s ease}
+.wa-btn:hover::after{transform:translateX(110%) skewX(-15deg)}
+.wa-btn:hover{background:#1ebe5d;transform:translateY(-2px)}
+.wa-hint{font-size:.68rem;color:rgba(160,144,112,.55);margin-top:8px;line-height:1.6}
+.wa-modal{position:fixed;inset:0;z-index:8000;display:none;align-items:center;justify-content:center;background:rgba(10,9,5,.92);backdrop-filter:blur(10px)}
+.wa-modal.open{display:flex;animation:fadeUp .35s ease}
+.wa-box{background:#0F0C06;border:1px solid rgba(37,211,102,.25);padding:40px;max-width:500px;width:92%;max-height:90vh;overflow-y:auto}
+.wa-box-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;gap:16px}
+.wa-box-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:300;color:var(--ivory)}
+.wa-box-sub{font-size:.7rem;color:var(--muted);margin-top:4px;letter-spacing:.06em}
+.wa-box-close{background:transparent;border:1px solid rgba(184,151,90,.2);color:var(--muted);width:32px;height:32px;cursor:pointer;font-size:.85rem;flex-shrink:0;transition:all .3s}
+.wa-box-close:hover{border-color:var(--gold);color:var(--gold)}
+.wa-fields{display:flex;flex-direction:column;gap:11px;margin-bottom:20px}
+.wa-send-btn{width:100%;background:#25D366;color:#fff;border:none;cursor:pointer;padding:16px;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.2em;font-weight:700;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .3s,transform .2s}
+.wa-send-btn:hover{background:#1ebe5d;transform:translateY(-1px)}
+ 
+/* ── SETUP NOTICE ── */
+.setup-notice{position:fixed;bottom:0;left:0;right:0;z-index:800;background:#0D0B07;border-top:1px solid rgba(184,151,90,.25);padding:14px 64px;display:flex;align-items:center;gap:20px;justify-content:space-between;transform:translateY(100%);transition:transform .5s ease;flex-wrap:wrap}
+.setup-notice.show{transform:translateY(0)}
+.setup-notice p{font-size:.74rem;color:var(--muted);line-height:1.6;flex:1}
+.setup-notice p strong{color:var(--gold)}
+.setup-notice-btn{background:var(--gold);color:var(--ink);border:none;cursor:pointer;padding:10px 24px;font-family:'Jost',sans-serif;font-size:.67rem;letter-spacing:.18em;font-weight:700;text-transform:uppercase;white-space:nowrap;transition:background .3s;flex-shrink:0}
+.setup-notice-btn:hover{background:var(--gold2)}
+.setup-notice-close{background:transparent;border:1px solid rgba(184,151,90,.25);color:var(--muted);cursor:pointer;padding:10px 16px;font-family:'Jost',sans-serif;font-size:.67rem;transition:all .3s;flex-shrink:0}
+.setup-notice-close:hover{border-color:var(--gold);color:var(--gold)}
+ 
+/* ── SETUP MODAL ── */
+.setup-modal{position:fixed;inset:0;z-index:8000;display:none;align-items:center;justify-content:center;background:rgba(10,9,5,.92);backdrop-filter:blur(10px)}
+.setup-modal.open{display:flex}
+.setup-box{background:#0F0C06;border:1px solid rgba(184,151,90,.25);padding:48px;max-width:640px;width:92%;max-height:90vh;overflow-y:auto}
+.setup-box h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:300;color:var(--ivory);margin-bottom:8px}
+.setup-sub{font-size:.82rem;color:var(--muted);margin-bottom:28px;line-height:1.7}
+.stp{background:rgba(184,151,90,.04);border:1px solid rgba(184,151,90,.12);padding:20px 24px;margin-bottom:12px}
+.stp-num{font-size:.6rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.stp p{font-size:.8rem;color:var(--muted);line-height:1.8}
+.stp code{background:rgba(184,151,90,.1);border:1px solid rgba(184,151,90,.2);padding:2px 7px;font-size:.75rem;color:var(--gold2);font-family:monospace}
+.script-block{background:#060503;border:1px solid rgba(184,151,90,.15);padding:16px;font-family:monospace;font-size:.68rem;color:var(--gold2);line-height:1.75;overflow-x:auto;white-space:pre;margin-top:12px;user-select:all}
+.url-row{display:flex;gap:10px;margin-top:14px}
+.url-row input{flex:1;background:rgba(245,240,232,.03);border:1px solid rgba(184,151,90,.2);padding:12px 15px;color:var(--ivory);font-family:'Jost',sans-serif;font-size:.8rem;outline:none;transition:border-color .3s}
+.url-row input:focus{border-color:var(--gold)}
+.url-row input::placeholder{color:rgba(161,144,112,.4)}
+.url-save-btn{background:var(--gold);color:var(--ink);border:none;cursor:pointer;padding:12px 20px;font-family:'Jost',sans-serif;font-size:.67rem;letter-spacing:.15em;font-weight:700;text-transform:uppercase;transition:background .3s;white-space:nowrap}
+.url-save-btn:hover{background:var(--gold2)}
+.modal-close{margin-top:18px;background:transparent;border:1px solid rgba(184,151,90,.2);color:var(--muted);cursor:pointer;padding:10px;font-family:'Jost',sans-serif;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s;width:100%}
+.modal-close:hover{border-color:var(--gold);color:var(--gold)}
+.setup-warning{margin-top:18px;font-size:.71rem;color:rgba(160,144,112,.55);line-height:1.75;border-top:1px solid rgba(184,151,90,.08);padding-top:16px}
+ 
+/* ── ANIMS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+ 
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  section{padding:80px 36px}
+  nav{padding:22px 36px}.nav.scrolled{padding:16px 36px}
+  .story{grid-template-columns:1fr}.story-img{min-height:360px}.story-text{padding:60px 40px}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}
+  .hl-grid{grid-template-columns:1fr 1fr}
+  .price-wrap{grid-template-columns:1fr}
+  .loc-wrap{grid-template-columns:1fr}
+  .prox-grid{grid-template-columns:repeat(2,1fr)}
+  .am-grid{grid-template-columns:repeat(3,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .contact-wa-wrap{grid-template-columns:1fr}
+  .wa-field-row{grid-template-columns:1fr}
+  footer{padding:22px 36px}.footer-note{text-align:left}
+  .setup-notice{padding:14px 24px}
+}
+@media(max-width:640px){
+  nav{padding:16px 20px}.nav-links{display:none}
+  section{padding:60px 20px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .numbers-grid{grid-template-columns:1fr 1fr}
+  .hl-grid{grid-template-columns:1fr}
+  .prox-grid{grid-template-columns:1fr 1fr}
+  .am-grid{grid-template-columns:repeat(2,1fr)}
+  .cf-row{grid-template-columns:1fr}
+  .nb-distances{padding:28px 20px}
+  footer{flex-direction:column;padding:18px 20px}
+  .setup-notice{padding:14px 20px}
+}
+</style>
+</head>
+<body>
+ 
+<!-- CURSOR -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+ 
+<!-- SETUP MODAL -->
+<div class="setup-modal" id="setupModal">
+  <div class="setup-box">
+    <h2>Connect Google Sheets</h2>
+    <p class="setup-sub">One-time 5-minute setup. After this, every lead from the website lands directly in your Google Sheet in real time.</p>
+ 
+    <div class="stp">
+      <div class="stp-num">Step 1 — Open Your Sheet</div>
+      <p>Your sheet is already created. Make sure Row 1 has exactly these headers (already done if you just created it):<br><br>
+      <code>Timestamp</code> &nbsp;·&nbsp; <code>Name</code> &nbsp;·&nbsp; <code>Phone</code> &nbsp;·&nbsp; <code>Email</code> &nbsp;·&nbsp; <code>Location</code> &nbsp;·&nbsp; <code>Budget</code> &nbsp;·&nbsp; <code>Purpose</code></p>
+    </div>
+ 
+    <div class="stp">
+      <div class="stp-num">Step 2 — Open Apps Script</div>
+      <p>In your Google Sheet, click <code>Extensions</code> in the top menu → <code>Apps Script</code>. A new tab opens. Delete all existing code there and paste this:</p>
+      <div class="script-block">function doPost(e) {
+  var sheet = SpreadsheetApp
+    .openById("1t5inP7VKb1Fe_UZFzhQSiWqihmPCAEKQDJR8zWlKYmY")
+    .getActiveSheet();
+  var d = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    d.timestamp, d.name, d.phone,
+    d.email, d.location, d.budget, d.purpose
+  ]);
+  return ContentService
+    .createTextOutput(JSON.stringify({status:"ok"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+ 
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({status:"active"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}</div>
+    </div>
+ 
+    <div class="stp">
+      <div class="stp-num">Step 3 — Deploy as Web App</div>
+      <p>Click <code>Save</code> (💾 icon) → then click <code>Deploy</code> button (top right) → <code>New deployment</code>.<br><br>
+      • Type: <code>Web app</code><br>
+      • Execute as: <code>Me</code><br>
+      • Who has access: <code>Anyone</code><br><br>
+      Click <strong style="color:var(--ivory)">Deploy</strong>. Google will ask you to authorize — click "Review permissions" → select your Google account → click "Allow".<br><br>
+      Finally, <strong style="color:var(--ivory)">copy the Web App URL</strong> shown.</p>
+    </div>
+ 
+    <div class="stp">
+      <div class="stp-num">Step 4 — Paste URL & Activate</div>
+      <p>Paste the Web App URL below. All future form submissions will go live into your sheet.</p>
+      <div class="url-row">
+        <input type="text" id="webhookInput" placeholder="https://script.google.com/macros/s/…/exec">
+        <button class="url-save-btn" onclick="saveWebhook()">Save & Go Live</button>
+      </div>
+    </div>
+ 
+    <p class="setup-warning">⚠️ Keep the Web App URL private — it's your direct data endpoint. The sheet ID is already embedded in the script above so it writes to your exact sheet automatically.</p>
+    <button class="modal-close" onclick="closeSetup()">Close — Set up later</button>
+  </div>
+</div>
+ 
+<!-- SETUP BOTTOM NOTICE (shows once) -->
+<div class="setup-notice" id="setupNotice">
+  <p>📋 <strong>Agent Setup:</strong> Connect your Google Sheet to capture all leads automatically. Takes 5 minutes, free forever.</p>
+  <button class="setup-notice-btn" onclick="openSetup()">Connect Now →</button>
+  <button class="setup-notice-close" onclick="dismissNotice()">Dismiss</button>
+</div>
+ 
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-top">Assetz Sanctum</div>
+    <div class="nav-logo-sub">Yelahanka New Town · Bangalore</div>
+  </div>
+  <div class="nav-links">
+    <a href="#highlights">Overview</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#location">Location</a>
+    <a href="#neighbourhood">Neighbourhood</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-eoi" onclick="goContact()">WhatsApp EOI</button>
+</nav>
+ 
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-canvas"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Pre-Launch Exclusive · Not Yet Public · EOI Open</div>
+    <h1 class="hero-headline">Life<br><em>Reimagined</em><br>Above All</h1>
+    <p class="hero-sub">Yelahanka New Town, North Bangalore</p>
+    <div class="hero-pills">
+      <div class="pill">3 BHK Residences</div>
+      <div class="pill">1800 – 2100 Sq.Ft</div>
+      <div class="pill">₹ 1.8 Cr – 2.5 Cr</div>
+      <div class="pill">Assetz Quality</div>
+      <div class="pill">EOI Pricing — Lowest Ever</div>
+    </div>
+    <div class="hero-btns">
+      <button class="btn-g btn-wa-hero" onclick="goContact()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.515 5.828L.057 23.812a.5.5 0 0 0 .611.611l6.008-1.456A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.36-.213-3.724.902.919-3.636-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        Place EOI on WhatsApp
+      </button>
+      <a href="tel:9901511104" class="btn-o">📞 +91 99015 11104</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span class="scroll-text">Explore</span>
+  </div>
+</div>
+ 
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+ 
+<!-- STORY -->
+<div class="story">
+  <div class="story-img">
+    <svg class="bldg-svg" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="130" y="80" width="140" height="520" fill="rgba(184,151,90,0.06)" stroke="rgba(184,151,90,0.25)" stroke-width="0.5"/>
+      <rect x="155" y="40" width="90" height="40" fill="rgba(184,151,90,0.04)" stroke="rgba(184,151,90,0.2)" stroke-width="0.5"/>
+      <rect x="175" y="20" width="50" height="20" fill="rgba(184,151,90,0.08)" stroke="rgba(184,151,90,0.3)" stroke-width="0.5"/>
+      <rect x="195" y="0" width="10" height="22" fill="rgba(184,151,90,0.15)" stroke="rgba(184,151,90,0.4)" stroke-width="0.5"/>
+      <rect x="60" y="200" width="70" height="400" fill="rgba(184,151,90,0.04)" stroke="rgba(184,151,90,0.18)" stroke-width="0.5"/>
+      <rect x="270" y="200" width="70" height="400" fill="rgba(184,151,90,0.04)" stroke="rgba(184,151,90,0.18)" stroke-width="0.5"/>
+      <g stroke="rgba(184,151,90,0.18)" stroke-width="0.4">
+        <line x1="170" y1="80" x2="170" y2="600"/><line x1="200" y1="80" x2="200" y2="600"/><line x1="230" y1="80" x2="230" y2="600"/>
+        <line x1="130" y1="130" x2="270" y2="130"/><line x1="130" y1="180" x2="270" y2="180"/>
+        <line x1="130" y1="230" x2="270" y2="230"/><line x1="130" y1="280" x2="270" y2="280"/>
+        <line x1="130" y1="330" x2="270" y2="330"/><line x1="130" y1="380" x2="270" y2="380"/>
+        <line x1="130" y1="430" x2="270" y2="430"/><line x1="130" y1="480" x2="270" y2="480"/>
+        <line x1="130" y1="530" x2="270" y2="530"/>
+      </g>
+      <g fill="rgba(184,151,90,0.38)">
+        <rect x="136" y="138" width="28" height="14"/><rect x="172" y="188" width="22" height="14"/>
+        <rect x="208" y="138" width="22" height="14"/><rect x="136" y="288" width="22" height="14"/>
+        <rect x="208" y="338" width="22" height="14"/><rect x="172" y="438" width="22" height="14"/>
+        <rect x="136" y="488" width="28" height="14"/><rect x="208" y="488" width="22" height="14"/>
+      </g>
+      <rect x="0" y="595" width="400" height="5" fill="rgba(184,151,90,0.15)"/>
+      <circle cx="40" cy="570" r="28" fill="rgba(184,151,90,0.07)" stroke="rgba(184,151,90,0.14)" stroke-width="0.5"/>
+      <circle cx="360" cy="565" r="22" fill="rgba(184,151,90,0.07)" stroke="rgba(184,151,90,0.14)" stroke-width="0.5"/>
+      <circle cx="50" cy="30" r="1.5" fill="rgba(184,151,90,0.7)"/>
+      <circle cx="350" cy="60" r="1" fill="rgba(184,151,90,0.5)"/>
+      <circle cx="300" cy="20" r="1.5" fill="rgba(184,151,90,0.6)"/>
+    </svg>
+  </div>
+  <div class="story-text">
+    <div class="label reveal-left">The Vision</div>
+    <blockquote class="story-quote reveal-left" style="transition-delay:.1s">"A breath of fresh air, infused with opulence — where home is a reflection of all that you are."</blockquote>
+    <p class="story-body reveal-left" style="transition-delay:.2s">Assetz Sanctum in Yelahanka New Town is a rare offering — generous 3BHK residences ranging 1800 to 2100 square feet in North Bangalore's fastest-rising address. Designed under Assetz's philosophy of a complete life, where nature, fitness, aesthetics and sustainability converge.<br><br>This is not simply a home. This is the beginning of a life you've been building toward.</p>
+    <div class="story-cta reveal-left" style="transition-delay:.3s">
+      <button class="btn-g" onclick="goContact()">Place EOI on WhatsApp →</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="label reveal" style="justify-content:center">By the Numbers</div>
+  <h2 class="display reveal" style="transition-delay:.1s;text-align:center">The Scale of <em>Sanctum</em></h2>
+  <div class="numbers-grid">
+    <div class="num-block reveal" style="transition-delay:.1s"><div class="num-val"><span class="count" data-t="3">0</span> BHK</div><div class="num-lbl">Residence Type</div><div class="num-desc">Spacious floor plans</div></div>
+    <div class="num-block reveal" style="transition-delay:.2s"><div class="num-val"><span class="count" data-t="1800">0</span><span class="num-unit">+</span></div><div class="num-lbl">Starting Sq.Ft</div><div class="num-desc">Up to 2100 sft</div></div>
+    <div class="num-block reveal" style="transition-delay:.3s"><div class="num-val">₹<span class="count" data-t="18">0</span><span class="num-unit"> L+</span></div><div class="num-lbl">Starting Price</div><div class="num-desc">EOI entry pricing</div></div>
+    <div class="num-block reveal" style="transition-delay:.4s"><div class="num-val"><span class="count" data-t="20">0</span><span class="num-unit">+</span></div><div class="num-lbl">Yrs Assetz Legacy</div><div class="num-desc">Zero delivery delays</div></div>
+  </div>
+</section>
+ 
+<!-- HIGHLIGHTS -->
+<section class="highlights" id="highlights">
+  <div class="label reveal">The Offering</div>
+  <h2 class="display reveal" style="transition-delay:.1s">Rare at This<br><em>Price Point</em></h2>
+  <div class="hl-grid">
+    <div class="hl-card reveal" style="transition-delay:.1s"><div class="hl-num">01</div><span class="hl-icon">🏡</span><h3 class="hl-title">Spacious 3 BHK Living</h3><p class="hl-body">Generously proportioned residences from 1800 to 2100 square feet — a floor plan increasingly scarce at this price in Bangalore's luxury market.</p><div class="hl-line"></div></div>
+    <div class="hl-card reveal" style="transition-delay:.2s"><div class="hl-num">02</div><span class="hl-icon">🏆</span><h3 class="hl-title">Assetz-Proven Delivery</h3><p class="hl-body">Two decades of benchmarking the built environment. Every Assetz project stands as testimony to uncompromising quality, timely delivery, and design excellence.</p><div class="hl-line"></div></div>
+    <div class="hl-card reveal" style="transition-delay:.3s"><div class="hl-num">03</div><span class="hl-icon">📈</span><h3 class="hl-title">EOI — Best Price Entry</h3><p class="hl-body">The Expression of Interest window represents the singular opportunity to lock in the lowest possible price before this project opens to the public.</p><div class="hl-line"></div></div>
+    <div class="hl-card reveal" style="transition-delay:.1s"><div class="hl-num">04</div><span class="hl-icon">🌿</span><h3 class="hl-title">Nature-First Design</h3><p class="hl-body">Assetz's ecosystem philosophy integrates green spaces, open corridors, and biophilic design — creating residences that breathe as naturally as they inspire.</p><div class="hl-line"></div></div>
+    <div class="hl-card reveal" style="transition-delay:.2s"><div class="hl-num">05</div><span class="hl-icon">🔑</span><h3 class="hl-title">End Use & Investment</h3><p class="hl-body">Whether your forever home or a high-yield investment in North Bangalore's fastest-appreciating corridor, Sanctum delivers both with equal strength.</p><div class="hl-line"></div></div>
+    <div class="hl-card reveal" style="transition-delay:.3s"><div class="hl-num">06</div><span class="hl-icon">⭐</span><h3 class="hl-title">First Come, Best Floors</h3><p class="hl-body">EOI registrants receive priority floor selection — the most coveted units, views, and orientations are allocated strictly in order of expression.</p><div class="hl-line"></div></div>
+  </div>
+</section>
+ 
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="label reveal">Investment</div>
+  <h2 class="display reveal" style="transition-delay:.1s">Transparent <em>Pricing</em><br>at EOI Stage</h2>
+  <div class="price-wrap">
+    <div class="price-main reveal">
+      <div class="price-hero-card">
+        <div class="price-eoi-tag">EOI Pricing — Exclusive Window</div>
+        <div class="price-from">Starting From</div>
+        <div class="price-big">₹ 1.8 Cr</div>
+        <div class="price-to">Up to ₹ 2.5 Cr</div>
+        <ul class="price-feats">
+          <li>3 BHK residences — 1800 to 2100 sq.ft</li>
+          <li>Yelahanka New Town, North Bangalore</li>
+          <li>Assetz build quality & delivery promise</li>
+          <li>Multiple floor plan configurations</li>
+          <li>Strong appreciation — IT & Metro corridor</li>
+          <li>Suitable for self-use & investment</li>
+        </ul>
+        <div style="margin-top:34px"><button class="btn-g" onclick="goContact()" style="width:100%;display:block;text-align:center">Place Your EOI on WhatsApp →</button></div>
+        <p class="price-note" style="margin-top:20px">EOI pricing is the lowest entry point. Prices increase with each phase of public launch.</p>
+      </div>
+    </div>
+    <div class="price-cards reveal" style="transition-delay:.2s">
+      <div class="p-card"><div><div class="p-card-lbl">Configuration</div><div class="p-card-val">3 BHK</div></div><div class="p-card-arrow">→</div></div>
+      <div class="p-card"><div><div class="p-card-lbl">Area Range</div><div class="p-card-val">1800 – 2100 sft</div></div><div class="p-card-arrow">→</div></div>
+      <div class="p-card"><div><div class="p-card-lbl">Budget Range</div><div class="p-card-val">₹ 1.8 – 2.5 Cr</div></div><div class="p-card-arrow">→</div></div>
+      <div class="p-card"><div><div class="p-card-lbl">EOI Stage</div><div class="p-card-val">Closing Soon ⚡</div></div><div class="p-card-arrow">→</div></div>
+      <div class="p-card"><div><div class="p-card-lbl">Developer</div><div class="p-card-val">Assetz Property</div></div><div class="p-card-arrow">→</div></div>
+      <div style="background:rgba(184,151,90,.06);border:1px solid rgba(184,151,90,.2);padding:26px 28px">
+        <div style="font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--warm);margin-bottom:10px">Direct Enquiry</div>
+        <a href="tel:9901511104" style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:300;color:var(--gold);text-decoration:none;display:block;margin-bottom:4px">+91 99015 11104</a>
+        <div style="font-size:.67rem;color:var(--warm);letter-spacing:.1em">Mon–Sat · 9AM–7PM</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- LOCATION: MAP -->
+<section class="location" id="location">
+  <div class="label reveal">Strategic Address</div>
+  <h2 class="display reveal" style="transition-delay:.1s">Find Us on<br><em>the Map</em></h2>
+  <div class="loc-wrap" style="margin-top:72px">
+    <div class="loc-map-box reveal">
+      <iframe
+        src="https://maps.google.com/maps?q=13.1013,77.5832&z=15&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+      <div class="map-label-bar">
+        <div class="map-label-bar-left">
+          Assetz Sanctum
+          <span>Yelahanka New Town, North Bangalore</span>
+        </div>
+        <a class="map-open-link" href="https://maps.app.goo.gl/Fz92Z1DBwiMouU6UA" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
+    </div>
+    <div class="loc-points reveal" style="transition-delay:.2s">
+      <div class="lp"><div class="lp-ico">🚇</div><div><div class="lp-title">Namma Metro Expansion</div><p class="lp-desc">Metro's northward push brings seamless connectivity to Yelahanka New Town, sharply boosting residential demand and capital values across the corridor.</p></div></div>
+      <div class="lp"><div class="lp-ico">💻</div><div><div class="lp-title">IT Belt Growth</div><p class="lp-desc">Major tech campuses and IT parks expanding rapidly in North Bangalore, creating sustained rental demand and high-income employment density.</p></div></div>
+      <div class="lp"><div class="lp-ico">✈️</div><div><div class="lp-title">Airport Proximity</div><p class="lp-desc">Kempegowda International Airport lies minutes away — a powerful lifestyle differentiator and key driver of property appreciation in the area.</p></div></div>
+      <div class="lp"><div class="lp-ico">🛣️</div><div><div class="lp-title">Infrastructure Boom</div><p class="lp-desc">Ring road access, elevated corridors, and BBMP road-widening projects are transforming North Bangalore's mobility landscape at scale.</p></div></div>
+      <div class="lp"><div class="lp-ico">🏫</div><div><div class="lp-title">Social Infrastructure</div><p class="lp-desc">Reputed schools, multi-specialty hospitals, retail malls and lifestyle centres within comfortable daily reach of Yelahanka New Town.</p></div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- NEIGHBOURHOOD SECTION -->
+<section class="neighbourhood" id="neighbourhood">
+  <div class="label reveal">The Neighbourhood</div>
+  <h2 class="display reveal" style="transition-delay:.1s">Everything <em>Within Reach</em></h2>
+  <p class="nb-intro reveal" style="transition-delay:.2s">Yelahanka New Town places you at the epicentre of North Bangalore's finest institutions, business hubs, hospitals, malls and transit — all under 20 minutes from your doorstep.</p>
+ 
+  <!-- CATEGORY TABS -->
+  <div class="prox-tabs reveal" style="transition-delay:.15s">
+    <button class="prox-tab active" onclick="switchTab('edu')">🎓 Institutions</button>
+    <button class="prox-tab" onclick="switchTab('mall')">🛍️ Malls</button>
+    <button class="prox-tab" onclick="switchTab('it')">💻 Tech Parks</button>
+    <button class="prox-tab" onclick="switchTab('hosp')">🏥 Hospitals</button>
+    <button class="prox-tab" onclick="switchTab('trans')">🚌 Transport</button>
+  </div>
+ 
+  <!-- EDUCATION -->
+  <div class="prox-panel active" id="tab-edu">
+    <div class="prox-grid">
+      <div class="prox-item"><div class="prox-name">Presidency University</div><div class="prox-time">7 mins</div></div>
+      <div class="prox-item"><div class="prox-name">BMSIT</div><div class="prox-time">10 mins</div></div>
+      <div class="prox-item"><div class="prox-name">SMVIT</div><div class="prox-time">10 mins</div></div>
+      <div class="prox-item"><div class="prox-name">NPS School</div><div class="prox-time">10 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Dravid Sports Academy</div><div class="prox-time">10 mins</div></div>
+      <div class="prox-item"><div class="prox-name">NITTE University</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Canadian International School</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Embassy Stone Hill</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Vidyashilp University</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Ryan International School</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Harrow International</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">DPS North</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Amity University</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Embassy Academy</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Nagarjuna University</div><div class="prox-time">20 mins</div></div>
+    </div>
+  </div>
+ 
+  <!-- MALLS -->
+  <div class="prox-panel" id="tab-mall">
+    <div class="prox-grid">
+      <div class="prox-item"><div class="prox-name">Garuda Mall</div><div class="prox-time">10 mins</div></div>
+      <div class="prox-item"><div class="prox-name">RMZ Galleria</div><div class="prox-time">12 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Mall of Asia</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Esteem Mall</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Bhartiya City Mall</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Prestige Forum</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Elements Mall</div><div class="prox-time">30 mins</div></div>
+    </div>
+  </div>
+ 
+  <!-- TECH PARKS -->
+  <div class="prox-panel" id="tab-it">
+    <div class="prox-grid">
+      <div class="prox-item"><div class="prox-name">Total Environment IVC</div><div class="prox-time">10 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Assets North Gate</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Bagmane Tech Park</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Embassy Hub</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Hinduja Ecopolis</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Amazon (Sattva Horizon)</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Purva Aerocity</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Brigade Opus & Magnum</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Kirloskar Business Park</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">KIADB Phase 2 (Foxconn)</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">KIADB Baglur</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Bhartiya City Tech Park</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Manyata Tech Park</div><div class="prox-time">30 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Devanahalli Business Park</div><div class="prox-time">30 mins</div></div>
+    </div>
+  </div>
+ 
+  <!-- HOSPITALS -->
+  <div class="prox-panel" id="tab-hosp">
+    <div class="prox-grid">
+      <div class="prox-item"><div class="prox-name">Manipal Kogilu</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Sparsh Hospital Yelahanka</div><div class="prox-time">14 mins</div></div>
+      <div class="prox-item"><div class="prox-name">CYTCARE Hospital</div><div class="prox-time">15 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Aster CMI</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Cloud 9 Hebbal</div><div class="prox-time">20 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Motherhood Hospital</div><div class="prox-time">25 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Manipal Hebbal</div><div class="prox-time">30 mins</div></div>
+    </div>
+  </div>
+ 
+  <!-- TRANSPORT -->
+  <div class="prox-panel" id="tab-trans">
+    <div class="prox-grid">
+      <div class="prox-item"><div class="prox-name">Railway Station</div><div class="prox-time">6 mins</div></div>
+      <div class="prox-item"><div class="prox-name">Metro Station</div><div class="prox-time">12 mins</div></div>
+      <div class="prox-item"><div class="prox-name">International Airport</div><div class="prox-time">25 mins</div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- AMENITIES -->
+<section class="amenities">
+  <div class="label reveal" style="justify-content:center">World-Class Living</div>
+  <h2 class="display reveal" style="transition-delay:.1s;text-align:center">Curated <em>Amenities</em></h2>
+  <div class="am-grid">
+    <div class="am-item reveal"><div class="am-ico">🏊</div><div class="am-lbl">Swimming Pool</div></div>
+    <div class="am-item reveal" style="transition-delay:.06s"><div class="am-ico">🎾</div><div class="am-lbl">Tennis & Padel</div></div>
+    <div class="am-item reveal" style="transition-delay:.12s"><div class="am-ico">🏋️</div><div class="am-lbl">Fitness Centre</div></div>
+    <div class="am-item reveal" style="transition-delay:.18s"><div class="am-ico">🌳</div><div class="am-lbl">Landscaped Gardens</div></div>
+    <div class="am-item reveal" style="transition-delay:.24s"><div class="am-ico">🎭</div><div class="am-lbl">Amphitheatre</div></div>
+    <div class="am-item reveal" style="transition-delay:.3s"><div class="am-ico">🐾</div><div class="am-lbl">Pets' Park</div></div>
+    <div class="am-item reveal" style="transition-delay:.06s"><div class="am-ico">🛝</div><div class="am-lbl">Kids' Play Zone</div></div>
+    <div class="am-item reveal" style="transition-delay:.12s"><div class="am-ico">🧘</div><div class="am-lbl">Yoga & Wellness</div></div>
+    <div class="am-item reveal" style="transition-delay:.18s"><div class="am-ico">🍃</div><div class="am-lbl">Jogging Track</div></div>
+    <div class="am-item reveal" style="transition-delay:.24s"><div class="am-ico">🎮</div><div class="am-lbl">Indoor Games</div></div>
+    <div class="am-item reveal" style="transition-delay:.3s"><div class="am-ico">🏡</div><div class="am-lbl">Grand Clubhouse</div></div>
+    <div class="am-item reveal" style="transition-delay:.36s"><div class="am-ico">🛡️</div><div class="am-lbl">24/7 Security</div></div>
+  </div>
+</section>
+ 
+<!-- WHY NOW -->
+<section class="why">
+  <div class="label reveal">The EOI Advantage</div>
+  <h2 class="display reveal" style="transition-delay:.1s">Why Act <em>Before</em><br>the Public Launch</h2>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-n">01</div><div><div class="why-h">Best Price Guaranteed</div><p class="why-p">EOI pricing is the absolute lowest this project will be offered. Every phase post-launch carries a higher rate card. What you lock in today is what only the savviest investors secure.</p></div></div>
+    <div class="why-card reveal" style="transition-delay:.1s"><div class="why-n">02</div><div><div class="why-h">First Access to Best Floors</div><p class="why-p">Floor selection, orientation, and view preferences are allocated strictly in order of EOI registration. The highest floors with the best outlook go first — always.</p></div></div>
+    <div class="why-card reveal" style="transition-delay:.2s"><div class="why-n">03</div><div><div class="why-h">Maximum Return Potential</div><p class="why-p">Across every Assetz project, buyers at EOI stage have consistently achieved the highest percentage appreciation. Entry price is the single greatest determinant of returns.</p></div></div>
+    <div class="why-card reveal" style="transition-delay:.3s"><div class="why-n">04</div><div><div class="why-h">Invest with Full Confidence</div><p class="why-p">With 20+ years, millions of square feet delivered, and multiple Developer of the Year awards, Assetz is not a promise — it is a proven, trusted record.</p></div></div>
+  </div>
+</section>
+ 
+<!-- AWARDS -->
+<section class="awards" style="padding:80px 0">
+  <div style="padding:0 64px">
+    <div class="label reveal">Recognition</div>
+    <h2 class="display reveal" style="transition-delay:.1s">Assetz <em>Awards</em></h2>
+  </div>
+  <div style="margin-top:48px;overflow:hidden"><div class="awards-scroll" id="awardsScroll"></div></div>
+</section>
+ 
+<!-- CONTACT — WHATSAPP ONLY -->
+<section class="contact" id="contact">
+  <div class="contact-wa-wrap">
+ 
+    <!-- LEFT: headline + call -->
+    <div class="contact-left reveal">
+      <div class="label">Get In Touch</div>
+      <h2 class="display" style="margin-bottom:20px">Reach Us <em>Instantly</em><br>on WhatsApp</h2>
+      <p class="contact-intro">Fill your details and we'll open WhatsApp pre-loaded with your EOI message — one tap and you're connected with our team.</p>
+      <a href="tel:9901511104" class="direct-call">
+        <div class="call-icon">📞</div>
+        <div>
+          <div class="call-num">+91 99015 11104</div>
+          <div class="call-sub">Call us directly · Mon–Sat · 9AM–7PM</div>
+        </div>
+      </a>
+      <!-- trust badges -->
+      <div class="wa-trust-row">
+        <div class="wa-trust-item">⚡<span>Instant response</span></div>
+        <div class="wa-trust-item">🔒<span>100% confidential</span></div>
+        <div class="wa-trust-item">📋<span>No obligation</span></div>
+      </div>
+    </div>
+ 
+    <!-- RIGHT: WhatsApp EOI form -->
+    <div class="wa-eoi-card reveal" style="transition-delay:.2s">
+      <!-- header -->
+      <div class="wa-eoi-head">
+        <div class="wa-eoi-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.515 5.828L.057 23.812a.5.5 0 0 0 .611.611l6.008-1.456A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.36-.213-3.724.902.919-3.636-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        </div>
+        <div>
+          <div class="wa-eoi-title">Place Your EOI on WhatsApp</div>
+          <div class="wa-eoi-sub">Your details will be pre-filled — just hit Send in WhatsApp</div>
+        </div>
+      </div>
+ 
+      <!-- fields -->
+      <div class="wa-eoi-fields">
+        <div class="wa-field-row">
+          <div class="wa-field-wrap">
+            <label class="wa-field-lbl">Full Name *</label>
+            <input class="wa-field" id="c-name" type="text" placeholder="e.g. Rahul Sharma" autocomplete="name">
+          </div>
+          <div class="wa-field-wrap">
+            <label class="wa-field-lbl">Phone Number *</label>
+            <input class="wa-field" id="c-phone" type="tel" placeholder="10-digit mobile" autocomplete="tel">
+          </div>
+        </div>
+        <div class="wa-field-row">
+          <div class="wa-field-wrap">
+            <label class="wa-field-lbl">Email Address</label>
+            <input class="wa-field" id="c-email" type="email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div class="wa-field-wrap">
+            <label class="wa-field-lbl">Your Location / City</label>
+            <input class="wa-field" id="c-location" type="text" placeholder="e.g. Hebbal, Bangalore">
+          </div>
+        </div>
+        <div class="wa-field-row">
+          <div class="wa-field-wrap">
+            <label class="wa-field-lbl">Budget Range</label>
+            <select class="wa-field" id="c-budget">
+              <option value="" disabled selected>Select budget</option>
+              <option>₹ 1.8 – 2.0 Cr</option>
+              <option>₹ 2.0 – 2.3 Cr</option>
+              <option>₹ 2.3 – 2.5 Cr</option>
+              <option>Open to Discussion</option>
+            </select>
+          </div>
+          <div class="wa-field-wrap">
+            <label class="wa-field-lbl">Purpose of Purchase</label>
+            <select class="wa-field" id="c-purpose">
+              <option value="" disabled selected>Select purpose</option>
+              <option>Self Residence</option>
+              <option>Investment</option>
+              <option>Both</option>
+            </select>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- CTA -->
+      <button class="wa-eoi-btn" onclick="sendContactWhatsApp()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.515 5.828L.057 23.812a.5.5 0 0 0 .611.611l6.008-1.456A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.36-.213-3.724.902.919-3.636-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        Send EOI on WhatsApp →
+      </button>
+      <p class="wa-eoi-note">WhatsApp opens with your EOI pre-filled · Sends to +91 99015 11104</p>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- WHATSAPP EOI MODAL -->
+<div class="wa-modal" id="waModal">
+  <div class="wa-box">
+    <div class="wa-box-head">
+      <div>
+        <div class="wa-box-title">Place EOI on WhatsApp</div>
+        <div class="wa-box-sub">Fill below — your details will be pre-filled in WhatsApp</div>
+      </div>
+      <button class="wa-box-close" onclick="closeWaModal()">✕</button>
+    </div>
+    <div class="wa-fields">
+      <input class="cf-input" id="wa-name" type="text" placeholder="Full Name *">
+      <input class="cf-input" id="wa-phone" type="tel" placeholder="Phone Number *">
+      <input class="cf-input" id="wa-email" type="email" placeholder="Email Address">
+      <input class="cf-input" id="wa-location" type="text" placeholder="Your Current Location / City">
+      <select class="cf-input" id="wa-budget">
+        <option value="" disabled selected>Budget Range</option>
+        <option>₹ 1.8 – 2.0 Cr</option>
+        <option>₹ 2.0 – 2.3 Cr</option>
+        <option>₹ 2.3 – 2.5 Cr</option>
+        <option>Open to Discussion</option>
+      </select>
+      <select class="cf-input" id="wa-purpose">
+        <option value="" disabled selected>Purpose</option>
+        <option>Self Residence</option>
+        <option>Investment</option>
+        <option>Both</option>
+      </select>
+    </div>
+    <button class="wa-send-btn" onclick="sendWhatsApp()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.515 5.828L.057 23.812a.5.5 0 0 0 .611.611l6.008-1.456A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.36-.213-3.724.902.919-3.636-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+      Open WhatsApp & Send EOI
+    </button>
+    <p style="font-size:.68rem;color:var(--muted);margin-top:12px;text-align:center;line-height:1.6">WhatsApp will open with your details pre-filled as a message to +91 99015 11104</p>
+  </div>
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Assetz Sanctum · Yelahanka New Town</div>
+  <div class="footer-note">Pre-launch communication shared with a select network. All details indicative & subject to change. RERA registration in process. © 2025 Assetz Property Group. +91 99015 11104</div>
+</footer>
+ 
+<div id="toast">✦ Thank you — we'll be in touch shortly</div>
+ 
+<script>
+// ─── PROXIMITY TABS ───────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.prox-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.prox-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+ 
+// ─── WHATSAPP EOI ─────────────────────────────────────────
+const WA_NUMBER = '919901511104'; // country code + number, no +
+ 
+function openWaModal() {
+  document.getElementById('waModal').classList.add('open');
+}
+function closeWaModal() {
+  document.getElementById('waModal').classList.remove('open');
+}
+document.getElementById('waModal').addEventListener('click', function(e) {
+  if (e.target === this) closeWaModal();
+});
+ 
+function sendWhatsApp() {
+  const name     = document.getElementById('wa-name').value.trim();
+  const phone    = document.getElementById('wa-phone').value.trim();
+  const email    = document.getElementById('wa-email').value.trim();
+  const location = document.getElementById('wa-location').value.trim();
+  const budget   = document.getElementById('wa-budget').value || 'Not specified';
+  const purpose  = document.getElementById('wa-purpose').value || 'Not specified';
+ 
+  if (!name)  { alert('Please enter your full name.'); return; }
+  if (!phone || phone.replace(/\D/g,'').length < 10) {
+    alert('Please enter a valid phone number.'); return;
+  }
+ 
+  const msg =
+    `🏡 *Assetz Sanctum — EOI Registration*\n\n` +
+    `*Full Name:* ${name}\n` +
+    `*Phone:* ${phone}\n` +
+    `*Email:* ${email || 'Not provided'}\n` +
+    `*Location:* ${location || 'Not provided'}\n` +
+    `*Budget Range:* ${budget}\n` +
+    `*Purpose:* ${purpose}\n\n` +
+    `_I am interested in registering my Expression of Interest for Assetz Sanctum, Yelahanka New Town. Please share complete project details, floor plans and pricing._`;
+ 
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  closeWaModal();
+  showToast('✦ Opening WhatsApp with your EOI details…');
+}
+ 
+// ─── CONTACT WHATSAPP SEND ────────────────────────────────
+function sendContactWhatsApp() {
+  const name     = document.getElementById('c-name').value.trim();
+  const phone    = document.getElementById('c-phone').value.trim();
+  const email    = document.getElementById('c-email').value.trim();
+  const location = document.getElementById('c-location').value.trim();
+  const budget   = document.getElementById('c-budget').value || 'Not specified';
+  const purpose  = document.getElementById('c-purpose').value || 'Not specified';
+ 
+  if (!name)  { alert('Please enter your full name.'); document.getElementById('c-name').focus(); return; }
+  if (!phone || phone.replace(/\D/g,'').length < 10) {
+    alert('Please enter a valid 10-digit phone number.'); document.getElementById('c-phone').focus(); return;
+  }
+ 
+  const msg =
+    `🏡 *Assetz Sanctum — EOI Registration*\n\n` +
+    `*Full Name:* ${name}\n` +
+    `*Phone:* ${phone}\n` +
+    `*Email:* ${email || 'Not provided'}\n` +
+    `*Location:* ${location || 'Not provided'}\n` +
+    `*Budget Range:* ${budget}\n` +
+    `*Purpose:* ${purpose}\n\n` +
+    `_I am interested in registering my Expression of Interest for Assetz Sanctum, Yelahanka New Town. Please share complete project details, floor plans and pricing at the earliest._`;
+ 
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  showToast('✦ Opening WhatsApp — your EOI is pre-filled!');
+ 
+  // Clear fields after send
+  ['c-name','c-phone','c-email','c-location'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('c-budget').selectedIndex = 0;
+  document.getElementById('c-purpose').selectedIndex = 0;
+}
+ 
+// ─── CONFIG ───────────────────────────────────────────────
+const SHEET_ID = '1t5inP7VKb1Fe_UZFzhQSiWqihmPCAEKQDJR8zWlKYmY';
+const WH_KEY   = 'assetz_webhook_url';
+ 
+// ─── CURSOR ───────────────────────────────────────────────
+const cur = document.getElementById('cur');
+const ring = document.getElementById('curRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx+'px'; cur.style.top = my+'px';
+});
+(function animR(){
+  rx += (mx-rx)*.12; ry += (my-ry)*.12;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(animR);
+})();
+document.querySelectorAll('button,a,.hl-card,.p-card,.lp,.am-item,.nb-card,.dist-item').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width='54px'; ring.style.height='54px'; ring.style.borderColor='rgba(184,151,90,.85)'; });
+  el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='rgba(184,151,90,.5)'; });
+});
+ 
+// ─── NAV SCROLL ───────────────────────────────────────────
+window.addEventListener('scroll', () =>
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 60)
+);
+ 
+// ─── SCROLL TO CONTACT ────────────────────────────────────
+function goContact() {
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+ 
+// ─── TICKER ───────────────────────────────────────────────
+const tickItems = [
+  '⚡ EOI Window Closing Soon', '3 BHK · 1800–2100 Sq.Ft',
+  "North Bangalore's Fastest-Growing Address", '₹ 1.8 Cr Starting',
+  'Assetz Quality Delivery', 'First Come — Best Floors',
+  'Pre-Launch Exclusive', 'Metro & Airport Proximity',
+  'Call +91 99015 11104', 'EOI Pricing — Lowest Ever', 'Zero Compromise on Quality'
+];
+const tkHTML = ([...tickItems,...tickItems]).map(i =>
+  `<div class="tick-item"><div class="tick-dot"></div>${i}</div>`).join('');
+document.getElementById('ticker').innerHTML = tkHTML + tkHTML;
+ 
+// ─── AWARDS ───────────────────────────────────────────────
+const awards = [
+  {y:'2025', org:'ET Real Estate Awards', t:'Developer of the Year (South)', p:'Assetz'},
+  {y:'2025', org:'Global Real Estate Brand Awards', t:'Luxury Developer of the Year', p:'Assetz'},
+  {y:'2025', org:'Times Business Awards', t:'Excellence in Architectural Design', p:'Assetz'},
+  {y:'2024', org:'Real Estate & Business Excellence', t:'Brand of the Year — Real Estate', p:'Assetz'},
+  {y:'2024', org:'GRI Awards', t:'Sustainable Project of the Year', p:'63° East'},
+  {y:'2024', org:'Real Estate Excellence Awards', t:'Luxury Project of the Year', p:'66 & Shibui'},
+  {y:'2023', org:'Realty+ Conclave', t:'Design Project of the Year', p:'38 & Banyan'},
+  {y:'2023', org:"Int'l Brand Equity Awards", t:'Developer of the Year — Sustainable', p:'Assetz'},
+  {y:'2023', org:'Construction Week Awards', t:'Green Project of the Year', p:'63° East'},
+];
+const awHTML = awards.map(a =>
+  `<div class="award-chip"><div class="aw-year">${a.y} · ${a.org}</div><div class="aw-body"><strong>${a.p}</strong><br>${a.t}</div></div>`
+).join('');
+const as = document.getElementById('awardsScroll');
+as.innerHTML = awHTML + awHTML;
+ 
+// ─── INTERSECTION OBSERVER ────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
+}, { threshold: .12 });
+document.querySelectorAll('.reveal,.reveal-left').forEach(el => obs.observe(el));
+ 
+// ─── COUNT UP ─────────────────────────────────────────────
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.count').forEach(c => {
+        const t = +c.dataset.t, dur = 1800, s = performance.now();
+        (function step(now){
+          const p = Math.min((now-s)/dur,1), ease = 1-Math.pow(1-p,3);
+          c.textContent = Math.round(ease*t);
+          if(p<1) requestAnimationFrame(step);
+        })(performance.now());
+      });
+      cObs.unobserve(e.target);
+    }
+  });
+}, { threshold: .3 });
+const ng = document.querySelector('.numbers-grid');
+if(ng) cObs.observe(ng);
+ 
+// ─── TOAST ────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg || '✦ Thank you — we\'ll be in touch shortly';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+ 
+// ─── SETUP NOTICE (show after 3s if no webhook saved) ─────
+setTimeout(() => {
+  if (!localStorage.getItem(WH_KEY) && !localStorage.getItem('notice_dismissed')) {
+    document.getElementById('setupNotice').classList.add('show');
+  }
+}, 3000);
+function dismissNotice() {
+  document.getElementById('setupNotice').classList.remove('show');
+  localStorage.setItem('notice_dismissed', '1');
+}
+ 
+// ─── SETUP MODAL ──────────────────────────────────────────
+function openSetup() {
+  document.getElementById('setupModal').classList.add('open');
+  const saved = localStorage.getItem(WH_KEY);
+  if(saved) document.getElementById('webhookInput').value = saved;
+}
+function closeSetup() {
+  document.getElementById('setupModal').classList.remove('open');
+}
+function saveWebhook() {
+  const url = document.getElementById('webhookInput').value.trim();
+  if(!url || !url.startsWith('https://script.google.com')) {
+    alert('Please paste a valid Google Apps Script Web App URL.\nIt should start with: https://script.google.com/macros/s/');
+    return;
+  }
+  localStorage.setItem(WH_KEY, url);
+  dismissNotice();
+  closeSetup();
+  showToast('✦ Google Sheet connected — leads will now be captured live!');
+}
+</script>
+</body>
+</html>
+ 
