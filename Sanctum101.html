@@ -21,15 +21,15 @@ body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--ivory);over
 .cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(184,151,90,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:28px 64px;display:flex;justify-content:space-between;align-items:center;transition:background .5s,padding .4s}
-nav.scrolled{background:rgba(10,9,5,0.95);backdrop-filter:blur(20px);padding:18px 64px;border-bottom:1px solid rgba(184,151,90,0.14)}
-.nav-logo-top{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;letter-spacing:0.1em;color:var(--white)}
-.nav-logo-sub{font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-top:2px}
-.nav-links{display:flex;gap:36px;align-items:center}
-.nav-links a{font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(253,251,247,0.5);text-decoration:none;transition:color .3s;position:relative}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 48px;display:flex;justify-content:space-between;align-items:center;transition:background .5s,padding .4s}
+nav.scrolled{background:rgba(10,9,5,0.97);backdrop-filter:blur(20px);padding:14px 48px;border-bottom:1px solid rgba(184,151,90,0.14)}
+.nav-logo-top{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;letter-spacing:0.08em;color:var(--white)}
+.nav-logo-sub{font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-top:2px}
+.nav-links{display:flex;gap:24px;align-items:center;flex-shrink:1;overflow:hidden}
+.nav-links a{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,251,247,0.5);text-decoration:none;transition:color .3s;position:relative;white-space:nowrap}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 .nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
-.nav-eoi{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:11px 28px;font-family:'Jost',sans-serif;font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .35s}
+.nav-eoi{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px 22px;font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .35s;white-space:nowrap;flex-shrink:0}
 .nav-eoi:hover{background:var(--gold);color:var(--ink)}
 
 /* ── HERO ── */
@@ -41,7 +41,7 @@ nav.scrolled{background:rgba(10,9,5,0.95);backdrop-filter:blur(20px);padding:18p
 .orb1{width:520px;height:520px;right:-120px;top:-60px;background:radial-gradient(circle,rgba(184,151,90,0.09),transparent 70%)}
 .orb2{width:360px;height:360px;left:-90px;bottom:100px;background:radial-gradient(circle,rgba(184,151,90,0.06),transparent 70%);animation-delay:-7s;animation-duration:19s}
 @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-30px) scale(1.05)}66%{transform:translate(-15px,20px) scale(0.97)}}
-.hero-content{position:relative;z-index:2;text-align:center;max-width:1000px;padding:0 40px}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:1000px;padding:80px 40px 0}
 .hero-tag{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(184,151,90,0.35);padding:8px 22px;margin-bottom:40px;font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);font-weight:500;opacity:0;animation:fadeUp .8s ease .4s forwards}
 .hero-tag::before,.hero-tag::after{content:'';width:16px;height:1px;background:var(--gold);opacity:.6}
 .hero-headline{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,8rem);font-weight:300;line-height:.92;color:var(--white);margin-bottom:16px;opacity:0;animation:fadeUp 1s ease .6s forwards}
@@ -63,7 +63,7 @@ nav.scrolled{background:rgba(10,9,5,0.95);backdrop-filter:blur(20px);padding:18p
 .scroll-text{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--warm)}
 
 /* ── TICKER ── */
-.ticker{background:var(--gold);overflow:hidden;height:44px;display:flex;align-items:center}
+.ticker{background:var(--gold);overflow:hidden;height:44px;display:flex;align-items:center;position:relative;z-index:1}
 .ticker-track{display:flex;white-space:nowrap;animation:tickerRun 32s linear infinite}
 .ticker-track:hover{animation-play-state:paused}
 .tick-item{display:inline-flex;align-items:center;gap:8px;padding:0 30px;height:44px;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);border-right:1px solid rgba(10,9,5,.12)}
@@ -387,7 +387,10 @@ footer{background:#050402;padding:26px 64px;display:flex;justify-content:space-b
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){
   section{padding:80px 36px}
-  nav{padding:22px 36px}.nav.scrolled{padding:16px 36px}
+  nav{padding:18px 28px}.nav.scrolled{padding:14px 28px}
+  .nav-links{gap:16px}
+  .nav-links a{font-size:0.55rem;letter-spacing:0.1em}
+  .nav-eoi{padding:9px 16px;font-size:0.58rem}
   .story{grid-template-columns:1fr}.story-img{min-height:360px}.story-text{padding:60px 40px}
   .numbers-grid{grid-template-columns:repeat(2,1fr)}
   .hl-grid{grid-template-columns:1fr 1fr}
@@ -407,7 +410,8 @@ footer{background:#050402;padding:26px 64px;display:flex;justify-content:space-b
   .setup-notice{padding:14px 24px}
 }
 @media(max-width:640px){
-  nav{padding:16px 20px}.nav-links{display:none}
+  nav{padding:14px 20px}
+  .nav-links{display:none}
   section{padding:60px 20px}
   .hero-btns{flex-direction:column;align-items:center}
   .numbers-grid{grid-template-columns:1fr 1fr}
@@ -423,7 +427,70 @@ footer{background:#050402;padding:26px 64px;display:flex;justify-content:space-b
 </head>
 <body>
 
-<!-- CURSOR -->
+<!-- PROPERTY TYPE SELECTOR POPUP -->
+<div id="propertySelector" style="
+  position:fixed;inset:0;z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(10,9,5,0.97);backdrop-filter:blur(12px);
+">
+  <div style="text-align:center;padding:20px;max-width:860px;width:95%;animation:fadeUp .7s ease forwards">
+    <!-- Branding -->
+    <div style="font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:#B8975A;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px">
+      <span style="display:inline-block;width:28px;height:1px;background:#B8975A"></span>
+      Assetz Pre-Launch · Exclusive Network
+      <span style="display:inline-block;width:28px;height:1px;background:#B8975A"></span>
+    </div>
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:300;color:#FDFBF7;line-height:1.15;margin-bottom:10px">
+      What are you looking for?
+    </div>
+    <p style="font-size:.82rem;color:#A09070;font-family:'Playfair Display',serif;font-style:italic;margin-bottom:52px;line-height:1.7">
+      Two exceptional pre-launch opportunities — choose the one that fits your vision.
+    </p>
+
+    <!-- Cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+
+      <!-- Apartment -->
+      <button onclick="chooseProperty('apartment')" style="
+        background:rgba(184,151,90,0.06);border:1px solid rgba(184,151,90,0.3);
+        padding:40px 32px;cursor:pointer;text-align:left;
+        transition:all .35s;position:relative;overflow:hidden;
+        font-family:'Jost',sans-serif;
+      " onmouseover="this.style.background='rgba(184,151,90,0.12)';this.style.borderColor='rgba(184,151,90,0.7)';this.style.transform='translateY(-4px)'"
+         onmouseout="this.style.background='rgba(184,151,90,0.06)';this.style.borderColor='rgba(184,151,90,0.3)';this.style.transform='translateY(0)'">
+        <div style="font-size:2.4rem;margin-bottom:18px">🏢</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:300;color:#FDFBF7;margin-bottom:8px">Apartment</div>
+        <div style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#B8975A;margin-bottom:16px;font-weight:500">Assetz Sanctum</div>
+        <p style="font-size:.78rem;color:#A09070;line-height:1.75;font-weight:300">3 BHK · 1800–2100 sft<br>Yelahanka New Town · ₹1.8–2.5 Cr<br>75% carpet area · Best in class</p>
+        <div style="margin-top:22px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#B8975A;font-weight:600;display:flex;align-items:center;gap:8px">
+          View Project <span style="font-size:.9rem">→</span>
+        </div>
+      </button>
+
+      <!-- Plot -->
+      <button onclick="chooseProperty('plot')" style="
+        background:rgba(74,163,74,0.05);border:1px solid rgba(74,163,74,0.25);
+        padding:40px 32px;cursor:pointer;text-align:left;
+        transition:all .35s;position:relative;overflow:hidden;
+        font-family:'Jost',sans-serif;
+      " onmouseover="this.style.background='rgba(74,163,74,0.1)';this.style.borderColor='rgba(74,163,74,0.6)';this.style.transform='translateY(-4px)'"
+         onmouseout="this.style.background='rgba(74,163,74,0.05)';this.style.borderColor='rgba(74,163,74,0.25)';this.style.transform='translateY(0)'">
+        <div style="font-size:2.4rem;margin-bottom:18px">🌿</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:300;color:#FDFBF7;margin-bottom:8px">Plot</div>
+        <div style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#4aa34a;margin-bottom:16px;font-weight:500">Assetz Palmscape</div>
+        <p style="font-size:.78rem;color:#A09070;line-height:1.75;font-weight:300">Plotted Development · IVC Road<br>North Bangalore · ₹1–2 Cr<br>Land appreciates 3× faster</p>
+        <div style="margin-top:22px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#4aa34a;font-weight:600;display:flex;align-items:center;gap:8px">
+          View Project <span style="font-size:.9rem">→</span>
+        </div>
+      </button>
+    </div>
+
+    <p style="font-size:.65rem;color:rgba(160,144,112,.4);letter-spacing:.1em">
+      📞 +91 99015 11104 &nbsp;·&nbsp; Pre-launch · Not yet public · Shared with select network
+    </p>
+  </div>
+</div>
+
 <div class="cursor" id="cur"></div>
 <div class="cursor-ring" id="curRing"></div>
 
@@ -504,7 +571,8 @@ function doGet(e) {
     <a href="#highlights">Overview</a>
     <a href="#pricing">Pricing</a>
     <a href="#location">Location</a>
-    <a href="#neighbourhood">Neighbourhood</a>
+    <a href="#neighbourhood">Area</a>
+    <a href="#comparison" style="color:var(--gold)">Compare ★</a>
     <a href="#contact">Contact</a>
   </div>
   <button class="nav-eoi" onclick="goContact()">WhatsApp EOI</button>
@@ -602,7 +670,7 @@ function doGet(e) {
 </section>
 
 <!-- CARPET AREA COMPARISON -->
-<section class="comparison">
+<section class="comparison" id="comparison">
   <div class="label reveal">Why Assetz Wins</div>
   <h2 class="display reveal" style="transition-delay:.1s">More Space. Same Budget.<br><em>No Compromise.</em></h2>
   <p class="cmp-intro reveal" style="transition-delay:.2s">Assetz Sanctum delivers the highest carpet area percentage among all top-tier North Bangalore projects — meaning you get more actual usable space for every rupee you invest. This is not marketing. These are the verified numbers.</p>
@@ -1058,7 +1126,67 @@ function doGet(e) {
 <div id="toast">✦ Thank you — we'll be in touch shortly</div>
 
 <script>
-// ─── PROXIMITY TABS ───────────────────────────────────────
+// ─── CARPET AREA BAR CHART ────────────────────────────────
+const cmpData = [
+  { name:'Assetz Sanctum', pct:75,  assetz:true  },
+  { name:'Sattva Lumina',  pct:70,  assetz:false },
+  { name:'Bhartiya Garden',pct:69.5,assetz:false },
+  { name:'Brigade Eternia',pct:69,  assetz:false },
+  { name:'TVS Auralis',    pct:69,  assetz:false },
+  { name:'TVS Altura',     pct:66,  assetz:false },
+  { name:'Godrej Woods',   pct:68.5,assetz:false },
+  { name:'Godrej MSR',     pct:64.5,assetz:false },
+];
+// Sort descending
+cmpData.sort((a,b) => b.pct - a.pct);
+
+const barsEl = document.getElementById('cmpBars');
+if(barsEl) {
+  barsEl.innerHTML = cmpData.map(d => `
+    <div class="cmp-bar-row">
+      <div class="cmp-bar-label${d.assetz?' is-assetz':''}">${d.name}${d.assetz?' ★':''}</div>
+      <div class="cmp-bar-track">
+        <div class="cmp-bar-fill${d.assetz?' is-assetz':' is-other'}" data-pct="${d.pct}" style="width:0">
+          <span class="cmp-bar-pct">${d.pct}%</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// Animate bars when in view
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      document.querySelectorAll('.cmp-bar-fill').forEach((bar, i) => {
+        const pct = parseFloat(bar.dataset.pct);
+        // scale relative to max(75%) so bars fill proportionally within track
+        const w = (pct / 77) * 100;
+        setTimeout(() => { bar.style.width = w + '%'; }, i * 80);
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: .2 });
+if(barsEl) barObs.observe(barsEl);
+
+// ─── PROPERTY SELECTOR POPUP ──────────────────────────────
+function chooseProperty(type) {
+  const overlay = document.getElementById('propertySelector');
+  overlay.style.opacity = '0';
+  overlay.style.transition = 'opacity .4s ease';
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 400);
+  if (type === 'plot') {
+    // Redirect to Palmscape page
+    window.location.href = 'assetz-palmscape.html';
+  }
+  // 'apartment' — stay on this page (Sanctum)
+}
+// Lock body scroll while popup is open
+document.body.style.overflow = 'hidden';
+
 function switchTab(id) {
   document.querySelectorAll('.prox-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.prox-panel').forEach(p => p.classList.remove('active'));
@@ -1165,7 +1293,7 @@ document.querySelectorAll('button,a,.hl-card,.p-card,.lp,.am-item,.nb-card,.dist
 
 // ─── NAV SCROLL ───────────────────────────────────────────
 window.addEventListener('scroll', () =>
-  document.getElementById('nav').classList.toggle('scrolled', scrollY > 60)
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 50)
 );
 
 // ─── SCROLL TO CONTACT ────────────────────────────────────
