@@ -433,6 +433,13 @@ footer{background:#050402;padding:26px 64px;display:flex;justify-content:space-b
   display:flex;align-items:center;justify-content:center;
   background:rgba(10,9,5,0.97);backdrop-filter:blur(12px);
 ">
+  <!-- BACK BUTTON top-left -->
+  <div style="position:absolute;top:24px;left:28px">
+    <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,151,90,.4)">
+      Assetz Pre-Launch · Exclusive
+    </span>
+  </div>
+
   <div style="text-align:center;padding:20px;max-width:860px;width:95%;animation:fadeUp .7s ease forwards">
     <!-- Branding -->
     <div style="font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:#B8975A;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px">
@@ -563,9 +570,22 @@ function doGet(e) {
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">
-    <div class="nav-logo-top">Assetz Sanctum</div>
-    <div class="nav-logo-sub">Yelahanka New Town · Bangalore</div>
+  <div style="display:flex;align-items:center;gap:18px">
+    <!-- Fix 1: Back button to landing selector -->
+    <button onclick="showSelector()" style="
+      background:transparent;border:1px solid rgba(184,151,90,.25);
+      color:rgba(184,151,90,.7);padding:7px 14px;
+      font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.16em;
+      text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap;
+      display:flex;align-items:center;gap:6px;
+    " onmouseover="this.style.borderColor='rgba(184,151,90,.7)';this.style.color='#B8975A'"
+       onmouseout="this.style.borderColor='rgba(184,151,90,.25)';this.style.color='rgba(184,151,90,.7)'">
+      ← Home
+    </button>
+    <div class="nav-logo">
+      <div class="nav-logo-top">Assetz Sanctum</div>
+      <div class="nav-logo-sub">Yelahanka New Town · Bangalore</div>
+    </div>
   </div>
   <div class="nav-links">
     <a href="#highlights">Overview</a>
@@ -574,6 +594,15 @@ function doGet(e) {
     <a href="#neighbourhood">Area</a>
     <a href="#comparison" style="color:var(--gold)">Compare ★</a>
     <a href="#contact">Contact</a>
+    <!-- Fix 2: Palmscape switcher -->
+    <a href="assetz-palmscape.html" style="
+      background:rgba(74,163,74,0.1);border:1px solid rgba(74,163,74,.35);
+      color:#4aa34a;padding:6px 14px;font-size:.58rem;letter-spacing:.14em;
+      text-transform:uppercase;font-weight:600;white-space:nowrap;transition:all .3s;
+    " onmouseover="this.style.background='rgba(74,163,74,0.2)';this.style.borderColor='rgba(74,163,74,.7)'"
+       onmouseout="this.style.background='rgba(74,163,74,0.1)';this.style.borderColor='rgba(74,163,74,.35)'">
+      🌿 Palmscape
+    </a>
   </div>
   <button class="nav-eoi" onclick="goContact()">WhatsApp EOI</button>
 </nav>
@@ -1170,6 +1199,16 @@ const barObs = new IntersectionObserver(entries => {
 if(barsEl) barObs.observe(barsEl);
 
 // ─── PROPERTY SELECTOR POPUP ──────────────────────────────
+function showSelector() {
+  const overlay = document.getElementById('propertySelector');
+  overlay.style.display = 'flex';
+  overlay.style.opacity = '0';
+  requestAnimationFrame(() => {
+    overlay.style.transition = 'opacity .4s ease';
+    overlay.style.opacity = '1';
+  });
+  document.body.style.overflow = 'hidden';
+}
 function chooseProperty(type) {
   const overlay = document.getElementById('propertySelector');
   overlay.style.opacity = '0';
@@ -1177,14 +1216,13 @@ function chooseProperty(type) {
   setTimeout(() => {
     overlay.style.display = 'none';
     document.body.style.overflow = '';
+    if (type === 'plot') {
+      window.location.href = 'assetz-palmscape.html';
+    }
+    // 'apartment' — stay on Sanctum page
   }, 400);
-  if (type === 'plot') {
-    // Redirect to Palmscape page
-    window.location.href = 'assetz-palmscape.html';
-  }
-  // 'apartment' — stay on this page (Sanctum)
 }
-// Lock body scroll while popup is open
+// Lock scroll on load
 document.body.style.overflow = 'hidden';
 
 function switchTab(id) {
