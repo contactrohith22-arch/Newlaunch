@@ -284,16 +284,37 @@ footer{background:#030604;padding:26px 64px;display:flex;justify-content:space-b
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">
-    <div class="nav-logo-top">Assetz Palmscape</div>
-    <div class="nav-logo-sub">Plotted Development · IVC Road · Bangalore</div>
+  <div style="display:flex;align-items:center;gap:18px">
+    <!-- Back to landing selector -->
+    <a href="assetz-sanctum.html" style="
+      background:transparent;border:1px solid rgba(74,140,63,.25);
+      color:rgba(74,140,63,.7);padding:7px 14px;
+      font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.16em;
+      text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap;
+      display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+    " onmouseover="this.style.borderColor='rgba(74,140,63,.7)';this.style.color='#6AAD5E'"
+       onmouseout="this.style.borderColor='rgba(74,140,63,.25)';this.style.color='rgba(74,140,63,.7)'">
+      ← Home
+    </a>
+    <div class="nav-logo">
+      <div class="nav-logo-top">Assetz Palmscape</div>
+      <div class="nav-logo-sub">Plotted Development · IVC Road · Bangalore</div>
+    </div>
   </div>
   <div class="nav-links">
-    <a href="assetz-sanctum.html" class="nav-back">← Sanctum</a>
     <a href="#why">Why Plots</a>
     <a href="#pricing">Pricing</a>
     <a href="#location">Location</a>
     <a href="#contact">Contact</a>
+    <!-- Fix 2: Sanctum switcher -->
+    <a href="assetz-sanctum.html" style="
+      background:rgba(184,151,90,0.08);border:1px solid rgba(184,151,90,.3);
+      color:#B8975A;padding:6px 14px;font-size:.58rem;letter-spacing:.14em;
+      text-transform:uppercase;font-weight:600;white-space:nowrap;transition:all .3s;
+    " onmouseover="this.style.background='rgba(184,151,90,0.18)';this.style.borderColor='rgba(184,151,90,.7)'"
+       onmouseout="this.style.background='rgba(184,151,90,0.08)';this.style.borderColor='rgba(184,151,90,.3)'">
+      🏢 Sanctum
+    </a>
   </div>
   <button class="nav-eoi" onclick="goContact()">WhatsApp EOI</button>
 </nav>
@@ -463,9 +484,9 @@ footer{background:#030604;padding:26px 64px;display:flex;justify-content:space-b
       <p class="appr-desc">In North Bangalore's growth corridors, land has historically appreciated 3× faster than residential apartments over comparable holding periods.</p>
     </div>
     <div class="appr-card reveal" style="transition-delay:.2s">
-      <div class="appr-val">0%</div>
-      <div class="appr-lbl">Maintenance Cost</div>
-      <p class="appr-desc">Unlike apartments, plots carry zero ongoing maintenance costs, no society charges, no depreciation — pure asset appreciation with no erosion.</p>
+      <div class="appr-val">∞</div>
+      <div class="appr-lbl">No Depreciation</div>
+      <p class="appr-desc">Land never ages, never depreciates, never needs renovation. Unlike a built structure, a plot only gains value over time — it is the purest form of real estate ownership.</p>
     </div>
     <div class="appr-card reveal" style="transition-delay:.3s">
       <div class="appr-val">100%</div>
@@ -596,7 +617,7 @@ footer{background:#030604;padding:26px 64px;display:flex;justify-content:space-b
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">Assetz Palmscape · IVC Road, North Bangalore</div>
-  <a href="assetz-sanctum.html" class="footer-back">← View Assetz Sanctum (Apartments)</a>
+  <a href="assetz-sanctum.html" class="footer-back" onclick="window.location.href='assetz-sanctum.html';return false;">🏢 View Assetz Sanctum (Apartments) →</a>
   <div class="footer-note">Pre-launch communication shared with select network. All details indicative & subject to change. RERA registration in process. © 2025 Assetz Property Group. +91 99015 11104</div>
 </footer>
 
